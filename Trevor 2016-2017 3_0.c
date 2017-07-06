@@ -29,7 +29,7 @@
 
 long g_autonomousTestTimer = 0;
 bool g_autonomousTrialRun = false;
-int t = 0; //tick counter for refreshing the battery values on the LCD panel
+int g_t = 0; //tick counter for refreshing the battery values on the LCD panel
 int g_holdTimeLCD = 0; //counter used for activating the menu
 int g_menuOption = 0; //signifies the prgram selected in the menu
 long g_timeForDriver = 0; //if trial run is true, this is how long in milliseconds it will be
@@ -621,7 +621,7 @@ task autonomous()
 task usercontrol()
 {
 	// User control code here, inside the loop
-	t = 0; //reset the battery refresh counter
+	g_t = 0; //reset the battery refresh counter
 	g_lockMenuChanger = false; //reset this
 	g_selectLCDProgram = false; //reset that
 	g_menuMode = false; //make sure the menu doesn't pop up

@@ -29,12 +29,12 @@ void menuLCDAndMainControl() //contains both the control for the lcd menu and fo
 				}
 			}
 			userCode();
-			if((t >= 100) && (g_menuMode == false)) //if the menu isn't being displayed and it is on an interval of 100 ticks
+			if((g_t >= 100) && (g_menuMode == false)) //if the menu isn't being displayed and it is on an interval of 100 ticks
 			{
-				if(t >= 500)  //if 500 ticks have been reached
+				if(g_t >= 500)  //if 500 ticks have been reached
 				{
 					updateDisplayBattery(); //update the battery levels on the diplay
-					t = 0; //reset the tick counter
+					g_t = 0; //reset the tick counter
 				}
 				if(g_holdTimeLCD >= 4333) //if there are at least 4333 ticks on the counter for activating the menu
 				{
@@ -49,7 +49,7 @@ void menuLCDAndMainControl() //contains both the control for the lcd menu and fo
 					displayLCDString(0, 14, "  "); //don't display any dots
 				}
 			}
-			t++; //add one tick to the battery refresh counter
+			g_t++; //add one tick to the battery refresh counter
 		}
 		else //if driver control is not on
 		{
