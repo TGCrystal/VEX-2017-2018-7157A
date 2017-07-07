@@ -129,7 +129,7 @@ void menuLCDAndMainControl() //contains both the control for the lcd menu and fo
 
 			if(LCD_selectProgram == true) //if the selected program will be executed
 			{
-				countdownLCD(); //activate a 3 second countdown
+				LCD_countdown(); //activate a 3 second countdown
 				LCD_menuMode = false; //disable the menu
 				LCD_selectProgram = false; //don't change the LCD program if the menu were somehow reopened
 				if(LCD_menuOption == 0) //if unlimited driving has been selected
