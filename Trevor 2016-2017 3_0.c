@@ -27,23 +27,23 @@
 //#include "C:\Users\7157R\Desktop\Robot Includes\SongsCore.c"
 //#include "C:\Users\7157R\Desktop\Robot Includes\UndertaleSongs.c"
 
-long g_autonomousTestTimer = 0;
+long LCD_autonomousTestTimer = 0;
 bool g_autonomousTrialRun = false;
-int g_t = 0; //tick counter for refreshing the battery values on the LCD panel
-int g_holdTimeLCD = 0; //counter used for activating the menu
-int g_menuOption = 0; //signifies the prgram selected in the menu
-long g_timeForDriver = 0; //if trial run is true, this is how long in milliseconds it will be
-bool g_trialRun = false; //used to tell when a time trial for driver control is happening
-bool g_menuMode = false; //when true, the menu shows up on the LCD panel
-bool g_lockMenuChanger = false; //prevents the menu options from cycling through really fast
-bool g_selectLCDProgram = false; //the selected program will activate if true
+int LCD_refreshCounter = 0; //tick counter for refreshing the battery values on the LCD panel
+int LCD_holdTime = 0; //counter used for activating the menu
+int LCD_menuOption = 0; //signifies the prgram selected in the menu
+long LCD_timeforDriver = 0; //if trial run is true, this is how long in milliseconds it will be
+bool LCD_trialRun = false; //used to tell when a time trial for driver control is happening
+bool LCD_menuMode = false; //when true, the menu shows up on the LCD panel
+bool LCD_lockMenuChanger = false; //prevents the menu options from cycling through really fast
+bool LCD_selectProgram = false; //the selected program will activate if true
 bool g_autonRed = true;
 bool g_autonLeft = false;
 bool g_autonCube = false;
 bool g_autonomousDecision = false;
 bool g_driveStraight = false;
 
-void stopAllMotors()
+void LCD_stopAllMotors()
 {
 	motor[port1] = 0;
 	motor[port2] = 0;
@@ -63,12 +63,12 @@ void clearEncoders()
 	SensorValue[leftEncoder] = 0;
 }
 
-void clearLCD() //function for clearing both lines on the lcd panel
+void LCD_clear() //function for clearing both lines on the lcd panel
 {
 	clearLCDLine(0); //clear the top lcd panel line
 	clearLCDLine(1); //clear the bottom lcd panel line
 }
-void updateDisplayBattery() //Displays the value of both batteries
+void LCD_updateBattery() //Displays the value of both batteries
 {
 	displayLCDString(0, 0, "B: "); //displays B:
 	displayLCDNumber(0, 3, nImmediateBatteryLevel); //displays the primary battery
@@ -79,7 +79,7 @@ void updateDisplayBattery() //Displays the value of both batteries
 void countdownLCD() //used for the countdown after selecting programs on the lcd menu
 {
 	ClearTimer(T2); //clear the second timer
-	clearLCD(); //clear both lines of the lcd panel
+	LCD_clear(); //clear both lines of the lcd panel
 	displayLCDCenteredString(0, "Start In:"); //in the center of the first line display Start In:
 	int c = 0; //create a variable, c, that is used as a counter to slow down the change rate of the lcd panel
 	int timeLeft = 3000; //create an integer to represent the amount of time left, starts at 3 seconds
@@ -106,7 +106,7 @@ void countdownLCD() //used for the countdown after selecting programs on the lcd
 		c++; //add 1 to c
 
 	}
-	clearLCD(); //clear both lines of the lcd panel after the countdown has finished
+	LCD_clear(); //clear both lines of the lcd panel after the countdown has finished
 }
 
 float driveSpeedModifier()
@@ -429,13 +429,13 @@ void autonomousMain()
 {
 	ClearTimer(T4);
 	int dispTime = 0;
-	long timeLeftForTrial = g_autonomousTestTimer - time1(T4); //used to show how much time is left as an integer
-	while(!(g_autonomousTrialRun) || (g_autonomousTestTimer >= time1(T4)))
+	long timeLeftForTrial = LCD_autonomousTestTimer - time1(T4); //used to show how much time is left as an integer
+	while(!(g_autonomousTrialRun) || (LCD_autonomousTestTimer >= time1(T4)))
 	{
-		timeLeftForTrial = g_autonomousTestTimer - time1(T4);
-		if((g_autonomousTrialRun) && ((g_autonomousTestTimer - time1(T4)) <= 30000)) //if it is in a trial run and less than 30 seconds are left
+		timeLeftForTrial = LCD_autonomousTestTimer - time1(T4);
+		if((g_autonomousTrialRun) && ((LCD_autonomousTestTimer - time1(T4)) <= 30000)) //if it is in a trial run and less than 30 seconds are left
 		{
-			timeLeftForTrial = g_autonomousTestTimer - time1(T4);
+			timeLeftForTrial = LCD_autonomousTestTimer - time1(T4);
 			dispTime = timeLeftForTrial;
 			displayLCDNumber(1, 0, dispTime); //show how much time is left in the trial run
 			if(timeLeftForTrial < 10) //used to clear out 0's as the time left goes down
@@ -460,57 +460,57 @@ void autonomousMain()
 			if(g_autonLeft && g_autonRed)
 			{
 				g_autonomousTrialRun = true;
-				g_autonomousTestTimer = -1;
+				LCD_autonomousTestTimer = -1;
 				leftRed();
 			}
 			else if(!(g_autonLeft) && g_autonRed)
 			{
 				g_autonomousTrialRun = true;
-				g_autonomousTestTimer = -1;
+				LCD_autonomousTestTimer = -1;
 				rightRed();
 			}
 			else if(g_autonLeft && !(g_autonRed))
 			{
 				g_autonomousTrialRun = true;
-				g_autonomousTestTimer = -1;
+				LCD_autonomousTestTimer = -1;
 				leftBlue();
 			}
 			else
 			{
 				g_autonomousTrialRun = true;
-				g_autonomousTestTimer = -1;
+				LCD_autonomousTestTimer = -1;
 				rightBlue();
 			}
 		}
 	}
 }
 
-void autonomousSwitcher()
+void LCD_autonomousSwitcher()
 {
 	bLCDBacklight = true;
 	g_autonomousDecision = false;
-	g_lockMenuChanger = false;
-	g_selectLCDProgram = false;
-	g_menuOption = 0;
-	clearLCD();
+	LCD_lockMenuChanger = false;
+	LCD_selectProgram = false;
+	LCD_menuOption = 0;
+	LCD_clear();
 	while(!(g_autonomousDecision))
 	{
-		if(g_menuOption == 0) //RED LEFT
+		if(LCD_menuOption == 0) //RED LEFT
 		{
 			g_autonLeft = true;
 			g_autonRed = true;
 		}
-		if(g_menuOption == 1) //RED RIGHT
+		if(LCD_menuOption == 1) //RED RIGHT
 		{
 			g_autonLeft = false;
 			g_autonRed = true;
 		}
-		if(g_menuOption == 2) //BLUE LEFT
+		if(LCD_menuOption == 2) //BLUE LEFT
 		{
 			g_autonLeft = true;
 			g_autonRed = false;
 		}
-		if(g_menuOption == 3) //BLUE RIGHT
+		if(LCD_menuOption == 3) //BLUE RIGHT
 		{
 			g_autonLeft = false;
 			g_autonRed = false;
@@ -532,36 +532,36 @@ void autonomousSwitcher()
 			displayLCDString(0, 5, "RIGHT");
 		}
 		displayLCDCenteredString(1, "<     Enter    >");
-		//if(!(g_lockMenuChanger))
+		//if(!(LCD_lockMenuChanger))
 		//{
 
 		if((nLCDButtons == 1)) //if the left button on the LCD panel is pressed
 		{
-			g_menuOption--; //decrease the selected menu option by 1
-			g_lockMenuChanger = true; //makes sure the menu options don't fly by
+			LCD_menuOption--; //decrease the selected menu option by 1
+			LCD_lockMenuChanger = true; //makes sure the menu options don't fly by
 			while(!(nLCDButtons == 0)) {}
-			clearLCD();
+			LCD_clear();
 		}
 		else if((nLCDButtons == 4)) //if the right button on the LCD panel is pressed
 		{
-			g_menuOption++; //increase the selected menu option by 1
-			g_lockMenuChanger = true; //makes sure the menu options don't fly by
+			LCD_menuOption++; //increase the selected menu option by 1
+			LCD_lockMenuChanger = true; //makes sure the menu options don't fly by
 			while(!(nLCDButtons == 0)) {}
-			clearLCD();
+			LCD_clear();
 		}
 		//}
-		if(g_menuOption < 0)
+		if(LCD_menuOption < 0)
 		{
-			g_menuOption = 3;
+			LCD_menuOption = 3;
 		}
-		else if(g_menuOption > 3)
+		else if(LCD_menuOption > 3)
 		{
-			g_menuOption = 0;
+			LCD_menuOption = 0;
 		}
 		if(nLCDButtons == 2)
 		{
 			bool programChosen = false;
-			clearLCD();
+			LCD_clear();
 			while(!(programChosen))
 			{
 				displayLCDCenteredString(0, "Are you sure?");
@@ -585,14 +585,14 @@ void autonomousSwitcher()
 				displayLCDString(1, 15, "N");
 				if(nLCDButtons == 1)
 				{
-					clearLCD();
+					LCD_clear();
 					while(!(nLCDButtons == 0)) {}
 					programChosen = true;
 					g_autonomousDecision = true;
 				}
 				else if(nLCDButtons == 4)
 				{
-					clearLCD();
+					LCD_clear();
 					while(!(nLCDButtons == 0)) {}
 					programChosen = true;
 				}
@@ -606,7 +606,7 @@ void autonomousSwitcher()
 
 void pre_auton()
 {
-	//autonomousSwitcher();
+	//LCD_autonomousSwitcher();
 	bStopTasksBetweenModes = true;
 }
 
@@ -621,14 +621,14 @@ task autonomous()
 task usercontrol()
 {
 	// User control code here, inside the loop
-	g_t = 0; //reset the battery refresh counter
-	g_lockMenuChanger = false; //reset this
-	g_selectLCDProgram = false; //reset that
-	g_menuMode = false; //make sure the menu doesn't pop up
+	LCD_refreshCounter = 0; //reset the battery refresh counter
+	LCD_lockMenuChanger = false; //reset this
+	LCD_selectProgram = false; //reset that
+	LCD_menuMode = false; //make sure the menu doesn't pop up
 	bLCDBacklight = true; //turn on the LCD backlight
-	g_trialRun = false; //do not run a trial run
-	clearLCD(); //clear both lines on the LCD panel
-	g_holdTimeLCD = 0; //reset the counter for activating the lcd menu
+	LCD_trialRun = false; //do not run a trial run
+	LCD_clear(); //clear both lines on the LCD panel
+	LCD_holdTime = 0; //reset the counter for activating the lcd menu
 
 	menuLCDAndMainControl(); //launch the function for the main user and LCD control
 }
