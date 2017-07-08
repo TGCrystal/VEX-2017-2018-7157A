@@ -25,168 +25,13 @@
 
 #include "Vex_Competition_Includes.c"   //Main competition background code...do not modify!
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Encoder Functions.c"
-
 #include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\LCD Functions And Variables.c"
 
-float driveSpeedModifier()
-{
-	if(vexRT[Btn5D] == 1)
-	{
-		return .7;
-	}
-	else
-	{
-		return 1;
-	}
-}
-
-void leftDrive(int leftDrivePower)
-{
-	motor[frontLeft] = driveSpeedModifier() * leftDrivePower;
-	motor[backLeft] = driveSpeedModifier() * leftDrivePower;
-}
-
-void rightDrive(int rightDrivePower)
-{
-	motor[frontRight] = driveSpeedModifier() * rightDrivePower;
-	motor[backRight] = driveSpeedModifier() * rightDrivePower;
-}
-
-void drive(int drivePower)
-{
-	leftDrive(drivePower);
-	rightDrive(drivePower);
-}
-
-void driveControl()
-{
-	if(abs(vexRT[Ch3]) > 30)
-	{
-		leftDrive(vexRT[Ch3]);
-	}
-	else
-	{
-		leftDrive(0);
-	}
-	if(abs(vexRT[Ch2]) > 30)
-	{
-		rightDrive(vexRT[Ch2]);
-	}
-	else
-	{
-		rightDrive(0);
-	}
-}
-
-void arm(int armPower)
-{
-	motor[armLeft] = armPower;
-	motor[armRight] = armPower;
-}
-
-void lift(int liftPower)
-{
-	motor[liftLeft] = liftPower;
-	motor[liftRight] = liftPower;
-}
-
-void armControl()
-{
-	if(vexRT[Btn7D] == 0)
-	{
-		if(vexRT[Btn6U] == 1)
-		{
-			arm(75);
-		}
-		else if(vexRT[Btn6D] == 1)
-		{
-			arm(-75);
-		}
-		else
-		{
-			arm(0);
-		}
-	}
-}
-
-void claw(int clawPower)
-{
-	motor[clawLeft] = clawPower;
-	motor[clawRight] = clawPower;
-}
-
-void clawControl()
-{
-	if(vexRT[Btn7D] == 0)
-	{
-		if(vexRT[Btn5U] == 1)
-		{
-			claw(-127);
-		}
-		else if(vexRT[Btn5D] == 1)
-		{
-			claw(127);
-		}
-		else
-		{
-			claw(0);
-		}
-	}
-	else
-	{
-		if(vexRT[Btn5U] == 1)
-		{
-			motor[clawRight] = 75;
-		}
-		else if(vexRT[Btn5D] == 1)
-		{
-			motor[clawRight] = -75;
-		}
-		else
-		{
-			motor[clawRight] = 0;
-		}
-		if(vexRT[Btn6U] == 1)
-		{
-			motor[clawLeft] = 75;
-		}
-		else if(vexRT[Btn6D] == 1)
-		{
-			motor[clawLeft] = -75;
-		}
-		else
-		{
-			motor[clawLeft] = 0;
-		}
-	}
-}
-
-void liftControl()
-{
-	if(vexRT[Btn8D] == 1)
-	{
-		lift(127);
-	}
-	else if(vexRT[Btn8U] == 1)
-	{
-		lift(-127);
-	}
-	else
-	{
-		lift(0);
-	}
-}
-
-void userCode()
-{
-	driveControl();
-	armControl();
-	clawControl();
-	liftControl();
-}
+#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Movement Functions.c"
 
 #include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Encoder Functions.c"
+
+#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\User Control Functions.c"
 
 #include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Autonomous Routines.c"
 
@@ -203,14 +48,13 @@ void pre_auton()
 
 task autonomous()
 {
-	LCD_autonomousTrialRun = false;
+	LCD_autonomousTrialRun = false; 
 	autonomousMain();
 }
 
 
 task usercontrol()
 {
-	// User control code here, inside the loop
 	LCD_refreshCounter = 0; //reset the battery refresh counter
 	LCD_lockMenuChanger = false; //reset this
 	LCD_selectProgram = false; //reset that
