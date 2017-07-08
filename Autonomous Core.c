@@ -3,10 +3,10 @@ void autonomousMain()
 	ClearTimer(T4);
 	int dispTime = 0;
 	long timeLeftForTrial = LCD_autonomousTestTimer - time1(T4); //used to show how much time is left as an integer
-	while(!(g_autonomousTrialRun) || (LCD_autonomousTestTimer >= time1(T4)))
+	while(!(LCD_autonomousTrialRun) || (LCD_autonomousTestTimer >= time1(T4)))
 	{
 		timeLeftForTrial = LCD_autonomousTestTimer - time1(T4);
-		if((g_autonomousTrialRun) && ((LCD_autonomousTestTimer - time1(T4)) <= 30000)) //if it is in a trial run and less than 30 seconds are left
+		if((LCD_autonomousTrialRun) && ((LCD_autonomousTestTimer - time1(T4)) <= 30000)) //if it is in a trial run and less than 30 seconds are left
 		{
 			timeLeftForTrial = LCD_autonomousTestTimer - time1(T4);
 			dispTime = timeLeftForTrial;
@@ -34,12 +34,12 @@ void autonomousMain()
 void LCD_autonomousSwitcher()
 {
 	bLCDBacklight = true;
-	g_autonomousDecision = false;
+	bool autonomousDecision = false;
 	LCD_lockMenuChanger = false;
 	LCD_selectProgram = false;
 	LCD_menuOption = 0;
 	LCD_clear();
-	while(!(g_autonomousDecision))
+	while(!(autonomousDecision))
 	{
 		if(LCD_menuOption == 0)
 		{
@@ -54,22 +54,6 @@ void LCD_autonomousSwitcher()
 			
 		}
 		if(LCD_menuOption == 3)
-		{
-			
-		}
-		if(g_autonRed)
-		{
-			
-		}
-		else
-		{
-			
-		}
-		if(g_autonLeft)
-		{
-			
-		}
-		else
 		{
 			
 		}
@@ -110,7 +94,7 @@ void LCD_autonomousSwitcher()
 					LCD_clear();
 					while(!(nLCDButtons == 0)) {}
 					programChosen = true;
-					g_autonomousDecision = true;
+					autonomousDecision = true;
 				}
 				else if(nLCDButtons == 4)
 				{

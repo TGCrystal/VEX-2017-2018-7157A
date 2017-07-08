@@ -105,7 +105,7 @@ void menuLCDAndMainControl() //contains both the control for the lcd menu and fo
 			}
 			else if(LCD_menuOption == 5)
 			{
-				displayLCDCenteredString(0, "AutonomousSelect");
+				displayLCDCenteredString(0, "AutonomousSelect"); //selection screen for which autonomous routine to use
 			}
 
 			if(nLCDButtons == 2) //if the center button on the LCD panel is pressed
@@ -150,13 +150,13 @@ void menuLCDAndMainControl() //contains both the control for the lcd menu and fo
 				}
 				else if(LCD_menuOption == 3) //if the 15 second autonomous has been selected
 				{
-					g_autonomousTrialRun = true;
+					LCD_autonomousTrialRun = true;
 					LCD_autonomousTestTimer = 15000;
 					autonomousMain(); //launch the competition autonomous code
 				}
 				else if(LCD_menuOption == 4) //if the 1:00 autonomous has been selected
 				{
-					g_autonomousTrialRun = true;
+					LCD_autonomousTrialRun = true;
 					LCD_autonomousTestTimer = 60000;
 					autonomousMain(); //launch the programming skill autonomous
 				}
