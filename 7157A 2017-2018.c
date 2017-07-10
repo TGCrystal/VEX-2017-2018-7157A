@@ -65,9 +65,9 @@
 * LCD_autonomousSwitcher() - used to change the autonomous program to use
 */
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\VEX LCD Menu Core.c" //contains the central LCD menu that then loads the user code
+#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\LCD Menu Core.c" //contains the central LCD menu that then loads the user code
 /* Methods
-* menuLCDAndMainControl() - the controller for the lcd menu
+* menuLCDAndMainControl() - the core code for the LCD menu
 */
 
 
