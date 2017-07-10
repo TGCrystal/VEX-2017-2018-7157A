@@ -27,21 +27,3 @@ void drive(int drivePower)
 	leftDrive(drivePower);
 	rightDrive(drivePower);
 }
-
-void arm(int armPower)
-{
-	motor[armLeft] = armPower;
-	motor[armRight] = armPower;
-}
-
-void lift(int liftPower)
-{
-	motor[liftLeft] = liftPower;
-	motor[liftRight] = liftPower;
-}
-
-void claw(int clawPower)
-{
-	motor[clawLeft] = clawPower;
-	motor[clawRight] = clawPower;
-}

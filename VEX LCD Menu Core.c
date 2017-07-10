@@ -1,5 +1,6 @@
-void menuLCDAndMainControl() //contains both the control for the lcd menu and for the main driver control hub
+void menuLCDAndMainControl() //the controller for the lcd menu
 {
+	bool finalCountdown = true; //decides whether or not the countdown will be used after selecting a program
 	while(true) //keep running through this forever
 	{
 		if(!(LCD_trialRun) || (time1(T3) <= LCD_timeforDriver)) //if trial run is false or there is enough time left in the time for the driver test
@@ -85,26 +86,32 @@ void menuLCDAndMainControl() //contains both the control for the lcd menu and fo
 			displayLCDCenteredString(1, "<     Enter    >"); //display the menu controls on the bottom line
 			if(LCD_menuOption == 0) //first option
 			{
+				finalCountdown = false;
 				displayLCDCenteredString(0, "Free Drive"); //unlimited driving time
 			}
 			else if(LCD_menuOption == 1) //second option
 			{
+				finalCountdown = true;
 				displayLCDCenteredString(0, "1:45 Drive Time"); //1 minute and 45 seconds of driving
 			}
 			else if(LCD_menuOption == 2) //third option
 			{
+				finalCountdown = true;
 				displayLCDCenteredString(0, "1:00 Drive Time"); //1 minute of driving
 			}
 			else if(LCD_menuOption == 3) //fourth option
 			{
+				finalCountdown = true;
 				displayLCDCenteredString(0, "0:15 Auto Time"); //15 second competition autonomous
 			}
 			else if(LCD_menuOption == 4) //fifth option
 			{
+				finalCountdown = true;
 				displayLCDCenteredString(0, "1:00 Auto Time"); //programming skills challenge test
 			}
-			else if(LCD_menuOption == 5)
+			else if(LCD_menuOption == 5) //sixth option
 			{
+				finalCountdown = false;
 				displayLCDCenteredString(0, "AutonomousSelect"); //selection screen for which autonomous routine to use
 			}
 

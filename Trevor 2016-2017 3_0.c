@@ -1,7 +1,6 @@
 #pragma config(UART_Usage, UART1, uartVEXLCD, baudRate19200, IOPins, None, None)
 #pragma config(UART_Usage, UART2, uartNotUsed, baudRate4800, IOPins, None, None)
 #pragma config(Sensor, in1,    powerExpander,  sensorAnalog)
-#pragma config(Sensor, in2,    clawPosition,   sensorPotentiometer)
 #pragma config(Sensor, dgtl9,  leftEncoder,    sensorQuadEncoder)
 #pragma config(Sensor, dgtl11, rightEncoder,   sensorQuadEncoder)
 #pragma config(Motor,  port1,           backRight,     tmotorVex393, openLoop, reversed)
@@ -25,31 +24,64 @@
 
 #include "Vex_Competition_Includes.c"   //Main competition background code...do not modify!
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\LCD Functions And Variables.c"
+#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\LCD Functions And Variables.c" //required variables and functions for the LCD Menu Core to function
+//Global Variable Declarations: LCD_autonomousTrialRun LCD_autonomousTestTimer LCD_refreshCounter LCD_holdTime LCD_menuOption
+// LCD_timeforDriver LCD_trialRun LCD_menuMode LCD_lockMenuChanger LCD_selectProgram 
+/* Methods
+* LCD_stopAllMotors() - stops every motor in every port regardless of name
+* LCD_clear() - clears both lines of the LCD panel with only one line instead of two
+* LCD_updateBattery() - refreshes the values of the batteries displayed on the LCD panel
+* LCD_countdown() - runs a countdown of three seconds on the LCD panel
+*/
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Movement Functions.c"
+#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Movement Functions.c" //functions that control movement, used by user control and autonomous code
+/* Methods
+* driveSpeedModifier() - if Button 5D is held then the powr of the drive is multiplied by .7
+* leftDrive(int leftDrivePower) - sets the power of both left motors to leftDrivePower
+* rightDrive(int rightDrivePower) - sets the power of both right motors to rightDrivePower
+* drive(int drivePower) - sets the power of all four drive motors to drivePower
+*/
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Encoder Functions.c"
+#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Encoder Functions.c" //functions used by autonomous for using encoders
+/* Methods
+* clearEncoders() - clears encoders, needs to be configured for whatever encoders are attached, currently has leftEncoder and rightEncoder for left and right drives
+* encoderDrive(int leftPower, int leftEncoderValue, int rightPower, int rightEncoderValue) - moves sides of the drive at given powers until they reach the given distances
+* sEncoderDrive(int drivePower, int driveEncoderValue) - similar to encoderDrive but has both sides moving the same amount
+*/
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\User Control Functions.c"
+#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\User Control Functions.c" //code that applies during the user control period
+/* Methods
+* driveControl() - uses the joysticks to control each side of the drive with tank style controls
+* userCode()- calls all of the methods in the file
+*/
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Autonomous Routines.c"
+#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Autonomous Routines.c" //the various functions to be ran for autonomous
+/* Methods
+*/
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Autonomous Core.c"
+#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Autonomous Core.c" //contains code for switching the autonomous routine and launching the correct one
+/* Methods
+* autonomousMain() - launches the correct program for use for the autonomous routine
+* LCD_autonomousSwitcher() - used to change the autonomous program to use
+*/
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\VEX LCD Menu Core.c"
+#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\VEX LCD Menu Core.c" //contains the central LCD menu that then loads the user code
+/* Methods
+* menuLCDAndMainControl() - the controller for the lcd menu
+*/
+
 
 void pre_auton()
 {
-	LCD_autonomousSwitcher();
+	LCD_autonomousSwitcher(); //comment this line out to disable the autonomous selector
 	bStopTasksBetweenModes = true;
 }
 
 
 task autonomous()
 {
-	LCD_autonomousTrialRun = false; 
-	autonomousMain();
+	LCD_autonomousTrialRun = false; //the autonomous code will not stop itself
+	autonomousMain(); //call the core of the autonomous code
 }
 
 

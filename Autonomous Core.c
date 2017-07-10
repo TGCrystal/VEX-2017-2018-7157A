@@ -28,6 +28,7 @@ void autonomousMain()
 				displayLCDString(1, 4, " ");
 			}
 		}
+		//code goes here
 	}
 }
 
