@@ -25,8 +25,6 @@
 #include "Vex_Competition_Includes.c"   //Main competition background code...do not modify!
 
 #include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\LCD Functions And Variables.c" //required variables and functions for the LCD Menu Core to function
-//Global Variable Declarations: LCD_autonomousTrialRun LCD_autonomousTestTimer LCD_refreshCounter LCD_holdTime LCD_menuOption
-// LCD_timeforDriver LCD_trialRun LCD_menuMode LCD_lockMenuChanger LCD_selectProgram 
 /* Methods
 * LCD_stopAllMotors() - stops every motor in every port regardless of name
 * LCD_clear() - clears both lines of the LCD panel with only one line instead of two
@@ -87,14 +85,8 @@ task autonomous()
 
 task usercontrol()
 {
-	LCD_refreshCounter = 0; //reset the battery refresh counter
-	LCD_lockMenuChanger = false; //reset this
-	LCD_selectProgram = false; //reset that
-	LCD_menuMode = false; //make sure the menu doesn't pop up
 	bLCDBacklight = true; //turn on the LCD backlight
-	LCD_trialRun = false; //do not run a trial run
 	LCD_clear(); //clear both lines on the LCD panel
-	LCD_holdTime = 0; //reset the counter for activating the lcd menu
 
 	menuLCDAndMainControl(); //launch the function for the main user and LCD control
 }

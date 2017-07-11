@@ -1,13 +1,5 @@
 bool LCD_autonomousTrialRun = false;
 long LCD_autonomousTestTimer = 0;
-int LCD_refreshCounter = 0; //tick counter for refreshing the battery values on the LCD panel
-int LCD_holdTime = 0; //counter used for activating the menu
-int LCD_menuOption = 0; //signifies the prgram selected in the menu
-long LCD_timeforDriver = 0; //if trial run is true, this is how long in milliseconds it will be
-bool LCD_trialRun = false; //used to tell when a time trial for driver control is happening
-bool LCD_menuMode = false; //when true, the menu shows up on the LCD panel
-bool LCD_lockMenuChanger = false; //prevents the menu options from cycling through really fast
-bool LCD_selectProgram = false; //the selected program will activate if true
 
 void LCD_stopAllMotors()
 {

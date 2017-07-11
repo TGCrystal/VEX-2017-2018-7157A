@@ -2,9 +2,7 @@ void LCD_autonomousSwitcher()
 {
 	bLCDBacklight = true;
 	bool autonomousDecision = false;
-	LCD_lockMenuChanger = false;
-	LCD_selectProgram = false;
-	LCD_menuOption = 0;
+	int LCD_menuOption = 0;
 	LCD_clear();
 	while(!(autonomousDecision))
 	{
@@ -28,14 +26,12 @@ void LCD_autonomousSwitcher()
 		if((nLCDButtons == 1)) //if the left button on the LCD panel is pressed
 		{
 			LCD_menuOption--; //decrease the selected menu option by 1
-			LCD_lockMenuChanger = true; //makes sure the menu options don't fly by
 			while(!(nLCDButtons == 0)) {}
 			LCD_clear();
 		}
 		else if((nLCDButtons == 4)) //if the right button on the LCD panel is pressed
 		{
 			LCD_menuOption++; //increase the selected menu option by 1
-			LCD_lockMenuChanger = true; //makes sure the menu options don't fly by
 			while(!(nLCDButtons == 0)) {}
 			LCD_clear();
 		}
@@ -78,6 +74,14 @@ void LCD_autonomousSwitcher()
 void menuLCDAndMainControl() //the controller for the lcd menu
 {
 	bool finalCountdown = true; //decides whether or not the countdown will be used after selecting a program
+	int LCD_refreshCounter = 0; //tick counter for refreshing the battery values on the LCD panel
+	int LCD_holdTime = 0; //counter used for activating the menu
+	bool LCD_selectProgram = false; //the selected program will activate if true
+	int LCD_menuOption = 0; //signifies the prgram selected in the menu
+	bool LCD_menuMode = false; //when true, the menu shows up on the LCD panel
+	bool LCD_lockMenuChanger = false; //prevents the menu options from cycling through really fast
+	long LCD_timeforDriver = 0; //if trial run is true, this is how long in milliseconds it will be
+	bool LCD_trialRun = false; //used to tell when a time trial for driver control is happening
 	while(true) //keep running through this forever
 	{
 		if(!(LCD_trialRun) || (time1(T3) <= LCD_timeforDriver)) //if trial run is false or there is enough time left in the time for the driver test
