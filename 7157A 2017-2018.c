@@ -54,7 +54,11 @@
 */
 
 #include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Autonomous Routines.c" //the various functions to be ran for autonomous
+/* Global Variables
+* auton_routine - Indicates which autonomous routine will run
+*/
 /* Methods
+* auton_skills() - the autonomous routine for the one minute skills challenge
 */
 
 #include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Autonomous Core.c" //contains code for launching the correct autnomous routine
@@ -78,7 +82,6 @@ void pre_auton()
 
 task autonomous()
 {
-	LCD_autonomousTrialRun = false; //the autonomous code will not stop itself
 	autonomousMain(); //call the core of the autonomous code
 }
 

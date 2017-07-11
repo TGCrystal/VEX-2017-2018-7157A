@@ -1,6 +1,3 @@
-bool LCD_autonomousTrialRun = false;
-long LCD_autonomousTestTimer = 0;
-
 void LCD_stopAllMotors()
 {
 	motor[port1] = 0;
