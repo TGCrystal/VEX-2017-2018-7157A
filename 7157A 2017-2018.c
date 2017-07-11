@@ -59,14 +59,14 @@
 /* Methods
 */
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Autonomous Core.c" //contains code for switching the autonomous routine and launching the correct one
+#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Autonomous Core.c" //contains code for launching the correct autnomous routine
 /* Methods
 * autonomousMain() - launches the correct program for use for the autonomous routine
-* LCD_autonomousSwitcher() - used to change the autonomous program to use
 */
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\LCD Menu Core.c" //contains the central LCD menu that then loads the user code
+#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\LCD Menu Core.c" //the central LCD menu that then loads the user code and also the switcher of the autonomous routines
 /* Methods
+* LCD_autonomousSwitcher() - used to change the autonomous program to use
 * menuLCDAndMainControl() - the core code for the LCD menu
 */
 
