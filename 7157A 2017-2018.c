@@ -24,7 +24,54 @@
 
 #include "Vex_Competition_Includes.c"   //Main competition background code...do not modify!
 
+//Overall Information
+/* Controls (All are located in User Control Functions unless noted otherwise)
+* Channel 1 (Ch1) - Unused
+* Channel 2 (Ch2) - controls the left side of the drive
+* Channel 3 (Ch3) - controls the right side of the drive
+* Channel 4 (Ch4) - Unused
+* Button 5D (Btn5D) - Multiplies the power of the drive by .7 (in Movement Functions.c)
+* Button 5U (Btn5U) - Unused
+* Button 6D (Btn6D) - Unused
+* Button 6U (Btn6U) - Unused
+* Button 7D (Btn7D) - Unused
+* Button 7L (Btn7L) - Unused
+* Button 7R (Btn7R) - Unused
+* Button 7U (Btn7U) - Unused
+* Button 8D (Btn8D) - Unused
+* Button 8L (Btn8L) - Unused
+* Button 8R (Btn8R) - Unused
+* Button 8U (Btn8U) - Unused
+*/
+/* Partner Controls
+* Channel 1 (Ch1) - Unused
+* Channel 2 (Ch2) - Unused
+* Channel 3 (Ch3) - Unused
+* Channel 4 (Ch4) - Unused
+* Button 5D (Btn5D) - Unused
+* Button 5U (Btn5U) - Unused
+* Button 6D (Btn6D) - Unused
+* Button 6U (Btn6U) - Unused
+* Button 7D (Btn7D) - Unused
+* Button 7L (Btn7L) - Unused
+* Button 7R (Btn7R) - Unused
+* Button 7U (Btn7U) - Unused
+* Button 8D (Btn8D) - Unused
+* Button 8L (Btn8L) - Unused
+* Button 8R (Btn8R) - Unused
+* Button 8U (Btn8U) - Unused
+*/
+/* Timers
+* T1 - unused
+* T2 - used for countdown in LCD_countdown() and as a timer in autonomousMain(), avoid reusing
+* T3 - used for trial driver run duration in menuLCDAndMainCore(), avoid reusing
+* T4 - unused
+*/
+
 #include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\LCD Functions And Variables.c" //required variables and functions for the LCD Menu Core to function
+/* Timers
+* T2 - used in the countdown
+*/
 /* Methods
 * LCD_stopAllMotors() - stops every motor in every port regardless of name
 * LCD_clear() - clears both lines of the LCD panel with only one line instead of two
@@ -62,11 +109,20 @@
 */
 
 #include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Autonomous Core.c" //contains code for launching the correct autnomous routine
+/* Global Variables
+* long auton_Duration - how long the autonomous run lasted in milliseconds, global so that it easily shows up in the debugger
+*/
+/* Timers
+* T2 - keeps track fo the autonomous duration
+*/
 /* Methods
 * autonomousMain() - launches the correct program for use for the autonomous routine
 */
 
 #include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\LCD Menu Core.c" //the central LCD menu that then loads the user code and also the switcher of the autonomous routines
+/* Timers
+* T3 - used for trial driver runs
+*/
 /* Methods
 * LCD_autonomousSwitcher() - used to change the autonomous program to use
 * menuLCDAndMainControl() - the core code for the LCD menu
@@ -76,6 +132,7 @@
 void pre_auton()
 {
 	LCD_autonomousSwitcher(); //comment this line out to disable the autonomous selector
+	clearEncoders();
 	bStopTasksBetweenModes = true;
 }
 

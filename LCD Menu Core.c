@@ -1,76 +1,3 @@
-void LCD_autonomousSwitcher()
-{
-	bLCDBacklight = true;
-	bool autonomousDecision = false;
-	int LCD_menuOption = 0;
-	LCD_clear();
-	while(!(autonomousDecision))
-	{
-		if(LCD_menuOption == 0)
-		{
-			
-		}
-		if(LCD_menuOption == 1)
-		{
-			
-		}
-		if(LCD_menuOption == 2)
-		{
-			
-		}
-		if(LCD_menuOption == 3)
-		{
-			
-		}
-		displayLCDCenteredString(1, "<     Enter    >");
-		if((nLCDButtons == 1)) //if the left button on the LCD panel is pressed
-		{
-			LCD_menuOption--; //decrease the selected menu option by 1
-			while(!(nLCDButtons == 0)) {}
-			LCD_clear();
-		}
-		else if((nLCDButtons == 4)) //if the right button on the LCD panel is pressed
-		{
-			LCD_menuOption++; //increase the selected menu option by 1
-			while(!(nLCDButtons == 0)) {}
-			LCD_clear();
-		}
-		if(LCD_menuOption < 0)
-		{
-			LCD_menuOption = 3;
-		}
-		else if(LCD_menuOption > 3)
-		{
-			LCD_menuOption = 0;
-		}
-		if(nLCDButtons == 2)
-		{
-			bool programChosen = false;
-			LCD_clear();
-			while(!(programChosen))
-			{
-				displayLCDCenteredString(0, "Are you sure?");
-				displayLCDString(1, 0, "Y");
-				displayLCDString(1, 15, "N");
-				if(nLCDButtons == 1)
-				{
-					LCD_clear();
-					while(!(nLCDButtons == 0)) {}
-					programChosen = true;
-					autonomousDecision = true;
-				}
-				else if(nLCDButtons == 4)
-				{
-					LCD_clear();
-					while(!(nLCDButtons == 0)) {}
-					programChosen = true;
-				}
-			}
-		}
-	}
-	bLCDBacklight = false;
-}
-
 void menuLCDAndMainControl() //the controller for the lcd menu
 {
 	bool finalCountdown = true; //decides whether or not the countdown will be used after selecting a program
@@ -242,7 +169,7 @@ void menuLCDAndMainControl() //the controller for the lcd menu
 				}
 				else if(LCD_menuOption == 4) //if the 1:00 autonomous has been selected
 				{
-					auton_routine = 0;
+					auton_routine = 0; //set the desired autonomous routine to the skill autonomous
 					autonomousMain(); //launch the programming skill autonomous
 				}
 				else if(LCD_menuOption == 5)
