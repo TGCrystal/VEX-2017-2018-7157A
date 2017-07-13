@@ -1,6 +1,6 @@
 long auton_Duration = 0; //how long the autonomous run lasted in milliseconds, global so that it easily shows up in the debugger
 
-void autonomousMain()
+void autonomousMain() //launches the correct autonomous routine and records the total amount of time to complete
 {
 	ClearTimer(T2);
 	switch(auton_routine) {

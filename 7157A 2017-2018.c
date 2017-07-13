@@ -63,12 +63,15 @@
 */
 /* Timers
 * T1 - unused
-* T2 - used for countdown in LCD_countdown() and as a timer in autonomousMain(), avoid reusing
-* T3 - used for trial driver run duration in menuLCDAndMainCore(), avoid reusing
+* T2 - used for countdown in LCD_countdown(), as a timer in autonomousMain(), and for trial driver run duration in menuLCDAndMainCore(), don't reuse
+* T3 - unused
 * T4 - unused
 */
 
 #include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\LCD Functions And Variables.c" //required variables and functions for the LCD Menu Core to function
+/* Global Variables
+* LCD_finalCountdown - indicates if the LCD countdown will run after selecting a program
+*/
 /* Timers
 * T2 - used in the countdown
 */
@@ -121,7 +124,7 @@
 
 #include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\LCD Menu Core.c" //the central LCD menu that then loads the user code and also the switcher of the autonomous routines
 /* Timers
-* T3 - used for trial driver runs
+* T2 - used for timing trial driver runs
 */
 /* Methods
 * LCD_autonomousSwitcher() - used to change the autonomous program to use
@@ -129,21 +132,21 @@
 */
 
 
-void pre_auton()
+void pre_auton() //runs when the robot is first turned on
 {
 	LCD_autonomousSwitcher(); //comment this line out to disable the autonomous selector
-	clearEncoders();
-	bStopTasksBetweenModes = true;
+	clearEncoders(); //resets the encoders
+	bStopTasksBetweenModes = true; //honestly not quite sure what this does but I've had issues when setting it to false before
 }
 
 
-task autonomous()
+task autonomous() //runs when autonomous is started from a competion switch
 {
 	autonomousMain(); //call the core of the autonomous code
 }
 
 
-task usercontrol()
+task usercontrol() //runs when driver is selected from the competition switch or when the robot is turned on without a competition switch
 {
 	bLCDBacklight = true; //turn on the LCD backlight
 	LCD_clear(); //clear both lines on the LCD panel
