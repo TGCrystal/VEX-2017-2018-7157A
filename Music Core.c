@@ -79,6 +79,11 @@ float mGetDuration(float division)
 	return (bpm/(division*100));
 }
 
+
+void mR(float division)
+{
+	wait10Msec(mGetDuration(division));
+}
 void mC(int octave, float division)
 {
 	float finalDuration = mGetDuration(division);

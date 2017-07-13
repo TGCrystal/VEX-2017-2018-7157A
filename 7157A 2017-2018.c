@@ -69,6 +69,7 @@
 */
 
 #include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Music Core.c" //just a fun program for playing music on the VEX Speaker Module
+#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Genesis Music.c" //plays some Genesis music through the speakers
 
 #include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\LCD Functions And Variables.c" //required variables and functions for the LCD Menu Core to function
 /* Global Variables
