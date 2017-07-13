@@ -68,10 +68,10 @@
 * T4 - unused
 */
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Music Core.c" //just a fun program for playing music on the VEX Speaker Module
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Genesis Music.c" //plays some Genesis music through the speakers
+#include "Music Core.c" //just a fun program for playing music on the VEX Speaker Module
+#include "Genesis Music.c" //plays some Genesis music through the speakers
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\LCD Functions And Variables.c" //required variables and functions for the LCD Menu Core to function
+#include "LCD Functions And Variables.c" //required variables and functions for the LCD Menu Core to function
 /* Global Variables
 * LCD_finalCountdown - indicates if the LCD countdown will run after selecting a program
 * LCD_menuOption - which selected program will be run by the LCD menu
@@ -86,7 +86,7 @@
 * LCD_countdown() - runs a countdown of three seconds on the LCD panel
 */
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Movement Functions.c" //functions that control movement, used by user control and autonomous code
+#include "Movement Functions.c" //functions that control movement, used by user control and autonomous code
 /* Methods
 * driveSpeedModifier() - if Button 5D is held then the powr of the drive is multiplied by .7
 * leftDrive(int leftDrivePower) - sets the power of both left motors to leftDrivePower
@@ -94,20 +94,20 @@
 * drive(int drivePower) - sets the power of all four drive motors to drivePower
 */
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Encoder Functions.c" //functions used by autonomous for using encoders
+#include "Encoder Functions.c" //functions used by autonomous for using encoders
 /* Methods
 * clearEncoders() - clears encoders, needs to be configured for whatever encoders are attached, currently has leftEncoder and rightEncoder for left and right drives
 * encoderDrive(int leftPower, int leftEncoderValue, int rightPower, int rightEncoderValue) - moves sides of the drive at given powers until they reach the given distances
 * sEncoderDrive(int drivePower, int driveEncoderValue) - similar to encoderDrive but has both sides moving the same amount
 */
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\User Control Functions.c" //code that applies during the user control period
+#include "User Control Functions.c" //code that applies during the user control period
 /* Methods
 * driveControl() - uses the joysticks to control each side of the drive with tank style controls
 * userCode()- calls all of the methods in the file
 */
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Autonomous Routines.c" //the various functions to be ran for autonomous
+#include "Autonomous Routines.c" //the various functions to be ran for autonomous
 /* Global Variables
 * auton_routine - Indicates which autonomous routine will run
 */
@@ -115,7 +115,7 @@
 * auton_skills() - the autonomous routine for the one minute skills challenge
 */
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\Autonomous Core.c" //contains code for launching the correct autnomous routine
+#include "Autonomous Core.c" //contains code for launching the correct autnomous routine
 /* Global Variables
 * long auton_Duration - how long the autonomous run lasted in milliseconds, global so that it easily shows up in the debugger
 */
@@ -126,7 +126,7 @@
 * autonomousMain() - launches the correct program for use for the autonomous routine
 */
 
-#include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\LCD Menu Core.c" //the central LCD menu that then loads the user code and also the switcher of the autonomous routines
+#include "LCD Menu Core.c" //the central LCD menu that then loads the user code and also the switcher of the autonomous routines
 /* Timers
 * T2 - used for timing trial driver runs
 */
@@ -150,11 +150,13 @@ task autonomous() //runs when autonomous is started from a competion switch
 	autonomousMain(); //call the core of the autonomous code
 }
 
-
+float testF;
 task usercontrol() //runs when driver is selected from the competition switch or when the robot is turned on without a competition switch
 {
 	bLCDBacklight = true; //turn on the LCD backlight
 	LCD_clear(); //clear both lines on the LCD panel
 
+	testF = mGetFrequency(10, 4);
+	genesis_firthOfFifth();
 	menuLCDAndMainControl(); //launch the function for the main user and LCD control
 }

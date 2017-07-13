@@ -1,4 +1,4 @@
-float bpm = 120;
+float bpm = 120.0;
 
 float mGetFrequency(int note, int octave)
 {
@@ -42,7 +42,7 @@ float mGetFrequency(int note, int octave)
 			base = 30.87;
 			break;
 	}
-	switch(multiplier) {
+	switch(octave) {
 		case 0:
 			multiplier = 1.0;
 			break;
@@ -71,14 +71,20 @@ float mGetFrequency(int note, int octave)
 			multiplier = 256.0;
 			break;
 	}
-	return (note*multiplier);
+	return (base*multiplier);
 }
 
 float mGetDuration(float division)
 {
-	return (bpm/(division*100));
+	float quarterTime = 6000/bpm;
+	return quarterTime * (4/division);
 }
 
+void PlayNote(float frequency, float duration)
+{
+	PlayImmediateTone(frequency, duration);
+	wait10Msec(duration);
+}
 
 void mR(float division)
 {
@@ -86,73 +92,49 @@ void mR(float division)
 }
 void mC(int octave, float division)
 {
-	float finalDuration = mGetDuration(division);
-	PlayTone(mGetFrequency(1, octave), finalDuration);
-	wait10Msec(finalDuration);
+	PlayNote(mGetFrequency(1, octave), mGetDuration(division));
 }
 void mDF(int octave, float division)
 {
-	float finalDuration = mGetDuration(division);
-	PlayTone(mGetFrequency(2, octave), finalDuration);
-	wait10Msec(finalDuration);
+	PlayNote(mGetFrequency(2, octave), mGetDuration(division));
 }
 void mD(int octave, float division)
 {
-	float finalDuration = mGetDuration(division);
-	PlayTone(mGetFrequency(3, octave), finalDuration);
-	wait10Msec(finalDuration);
+	PlayNote(mGetFrequency(3, octave), mGetDuration(division));
 }
 void mEF(int octave, float division)
 {
-	float finalDuration = mGetDuration(division);
-	PlayTone(mGetFrequency(4, octave), finalDuration);
-	wait10Msec(finalDuration);
+	PlayNote(mGetFrequency(4, octave), mGetDuration(division));
 }
 void mE(int octave, float division)
 {
-	float finalDuration = mGetDuration(division);
-	PlayTone(mGetFrequency(5, octave), finalDuration);
-	wait10Msec(finalDuration);
+	PlayNote(mGetFrequency(5, octave), mGetDuration(division));
 }
 void mF(int octave, float division)
 {
-	float finalDuration = mGetDuration(division);
-	PlayTone(mGetFrequency(6, octave), finalDuration);
-	wait10Msec(finalDuration);
+	PlayNote(mGetFrequency(6, octave), mGetDuration(division));
 }
 void mGF(int octave, float division)
 {
-	float finalDuration = mGetDuration(division);
-	PlayTone(mGetFrequency(7, octave), finalDuration);
-	wait10Msec(finalDuration);
+	PlayNote(mGetFrequency(7, octave), mGetDuration(division));
 }
 void mG(int octave, float division)
 {
-	float finalDuration = mGetDuration(division);
-	PlayTone(mGetFrequency(8, octave), finalDuration);
-	wait10Msec(finalDuration);
+	PlayNote(mGetFrequency(8, octave), mGetDuration(division));
 }
 void mAF(int octave, float division)
 {
-	float finalDuration = mGetDuration(division);
-	PlayTone(mGetFrequency(9, octave), finalDuration);
-	wait10Msec(finalDuration);
+	PlayNote(mGetFrequency(9, octave), mGetDuration(division));
 }
 void mA(int octave, float division)
 {
-	float finalDuration = mGetDuration(division);
-	PlayTone(mGetFrequency(10, octave), finalDuration);
-	wait10Msec(finalDuration);
+	PlayNote(mGetFrequency(10, octave), mGetDuration(division));
 }
 void mBF(int octave, float division)
 {
-	float finalDuration = mGetDuration(division);
-	PlayTone(mGetFrequency(11, octave), finalDuration);
-	wait10Msec(finalDuration);
+	PlayNote(mGetFrequency(11, octave), mGetDuration(division));
 }
 void mB(int octave, float division)
 {
-	float finalDuration = mGetDuration(division);
-	PlayTone(mGetFrequency(12, octave), finalDuration);
-	wait10Msec(finalDuration);
+	PlayNote(mGetFrequency(12, octave), mGetDuration(division));
 }

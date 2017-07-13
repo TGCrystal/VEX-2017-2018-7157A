@@ -1,6 +1,6 @@
 void genesis_firthOfFifth()
 {
-	bpm = 87;
+	bpm = 87.0;
 	
 	for(int i = 0; i <= 1; i++)
 	{
