@@ -1,4 +1,5 @@
 bool LCD_finalCountdown = true; //indicates if the LCD countdown will run after selecting a program
+int LCD_menuOption = 0;
 
 void LCD_stopAllMotors()
 {

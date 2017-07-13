@@ -16,13 +16,16 @@ void LCD_autonomousSwitcher()
 {
 	bLCDBacklight = true;
 	bool autonomousDecision = false;
-	const int NUM_OF_ROUTINES = 0 + 1; //Number of normal autonomous routines + the number of skills routines
+	const int NUM_OF_ROUTINES = 1 + 1; //Number of normal autonomous routines + the number of skills routines
 	LCD_clear();
 	while(!(autonomousDecision))
 	{
 		switch(auton_routine) {
 		case 0:
-			displayLCDCenteredString(0, "Skills");
+			displayLCDCenteredString(0, "     Skills     ");
+			break;
+		case 1:
+			displayLCDCenteredString(0, "      Main      ");
 			break;
 		default:
 			displayLCDCenteredString(0, "Error");
@@ -42,9 +45,9 @@ void LCD_autonomousSwitcher()
 		}
 		if(auton_routine < 0)
 		{
-			auton_routine = NUM_OF_ROUTINES + 1;
+			auton_routine = NUM_OF_ROUTINES - 1;
 		}
-		else if(auton_routine > NUM_OF_ROUTINES)
+		else if(auton_routine >= NUM_OF_ROUTINES)
 		{
 			auton_routine = 0;
 		}
@@ -70,5 +73,4 @@ void LCD_autonomousSwitcher()
 			}
 		}
 	}
-	bLCDBacklight = false;
 }

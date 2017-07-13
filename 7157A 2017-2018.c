@@ -74,6 +74,7 @@
 #include "C:\Users\7157R\Documents\GitHub\VEX-2017-2018-7157A\LCD Functions And Variables.c" //required variables and functions for the LCD Menu Core to function
 /* Global Variables
 * LCD_finalCountdown - indicates if the LCD countdown will run after selecting a program
+* LCD_menuOption - which selected program will be run by the LCD menu
 */
 /* Timers
 * T2 - used in the countdown
@@ -137,8 +138,9 @@
 
 void pre_auton() //runs when the robot is first turned on
 {
-	LCD_autonomousSwitcher(); //comment this line out to disable the autonomous selector
+	//LCD_autonomousSwitcher(); //comment this line out to disable the autonomous selector
 	clearEncoders(); //resets the encoders
+	bLCDBacklight = false;
 	bStopTasksBetweenModes = true; //honestly not quite sure what this does but I've had issues when setting it to false before
 }
 

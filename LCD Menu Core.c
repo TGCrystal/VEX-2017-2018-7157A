@@ -41,11 +41,11 @@ void LCD_displayMenuOptions() //refreshes the option shon on screen
 
 void menuLCDAndMainControl() //the controller for the lcd menu
 {
-	bool LCD_finalCountdown = true; //decides whether or not the countdown will be used after selecting a program
+	LCD_finalCountdown = true; //decides whether or not the countdown will be used after selecting a program
 	int LCD_refreshCounter = 0; //tick counter for refreshing the battery values on the LCD panel
 	int LCD_holdTime = 0; //counter used for activating the menu
 	bool LCD_selectProgram = false; //the selected program will activate if true
-	int LCD_menuOption = 0; //signifies the prgram selected in the menu
+	LCD_menuOption = 0; //signifies the prgram selected in the menu
 	bool LCD_menuMode = false; //when true, the menu shows up on the LCD panel
 	bool LCD_lockMenuChanger = false; //prevents the menu options from cycling through really fast
 	long LCD_timeforDriver = 0; //if trial run is true, this is how long in milliseconds it will be
@@ -79,32 +79,32 @@ void menuLCDAndMainControl() //the controller for the lcd menu
 				}
 			}
 			userCode(); //the only outgoing call to the driver control from here, function is in the file User Control Functions.c
-			if((LCD_refreshCounter >= 100) && (LCD_menuMode == false)) //if the menu isn't being displayed and it is on an interval of 100 ticks
-			{
-				if(LCD_refreshCounter >= 500)  //if 500 ticks have been reached
-				{
-					LCD_updateBattery(); //update the battery levels on the diplay
-					LCD_refreshCounter = 0; //reset the tick counter
-				}
-				if(LCD_holdTime >= 4333) //if there are at least 4333 ticks on the counter for activating the menu
-				{
-					displayLCDString(0, 14, ".."); //display two dots to signify the menu is about to open
-				}
-				else if(LCD_holdTime >= 2167) //if there at least 2167 ticks on the counter for activating the menu
-				{
-					displayLCDString(0, 14, " ."); //display one dot to indicate the menu is loading
-				}
-				else //if neither of those tick requirements are met
-				{
-					displayLCDString(0, 14, "  "); //don't display any dots
-				}
-			}
-			LCD_refreshCounter++; //add one tick to the battery refresh counter
 		}
 		else //if driver control is not on
 		{
 			LCD_stopAllMotors();
 		}
+		if((LCD_refreshCounter >= 100) && (LCD_menuMode == false)) //if the menu isn't being displayed and it is on an interval of 100 ticks
+		{
+			if(LCD_refreshCounter >= 500)  //if 500 ticks have been reached
+			{
+				LCD_updateBattery(); //update the battery levels on the diplay
+				LCD_refreshCounter = 0; //reset the tick counter
+			}
+			if(LCD_holdTime >= 4333) //if there are at least 4333 ticks on the counter for activating the menu
+			{
+				displayLCDString(0, 14, ".."); //display two dots to signify the menu is about to open
+			}
+			else if(LCD_holdTime >= 2167) //if there at least 2167 ticks on the counter for activating the menu
+			{
+				displayLCDString(0, 14, " ."); //display one dot to indicate the menu is loading
+			}
+			else //if neither of those tick requirements are met
+			{
+				displayLCDString(0, 14, "  "); //don't display any dots
+			}
+		}
+		LCD_refreshCounter++; //add one tick to the battery refresh counter
 
 		if(nLCDButtons == 7) //if all 3 LCD buttons are held down
 		{
@@ -157,6 +157,7 @@ void menuLCDAndMainControl() //the controller for the lcd menu
 				switch(LCD_menuOption) { //switch statement to chose which program to launch based on the value of LCD_menuOption
 					case 0: //if unlimited driving has been selected
 						LCD_trialRun = false; //disable it from being a trial run, allowing for infinite drive time
+						LCD_clear();
 						break;
 					case 1: //if 1:45 of drivetime has been selected
 						LCD_trialRun = true; //make it a trial run
@@ -176,6 +177,7 @@ void menuLCDAndMainControl() //the controller for the lcd menu
 						autonomousMain(); //launch the programming skill autonomous
 						break;
 					case 5: //if the autonomous switcher has been selected
+						while(nLCDButtons != 0) {}
 						LCD_autonomousSwitcher();
 						break;
 					default: //if somehow none of the available options were selected
