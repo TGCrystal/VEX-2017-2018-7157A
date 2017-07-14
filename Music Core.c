@@ -138,3 +138,41 @@ void mB(int octave, float division)
 {
 	PlayNote(mGetFrequency(12, octave), mGetDuration(division));
 }
+
+void mCF(int octave, float division)
+{
+	mB((octave - 1), division);
+}
+void mFF(int octave, float division)
+{
+	mE(octave, division);
+}
+
+void mAS(int octave, float division)
+{
+	mBF(octave, division);
+}
+void mBS(int octave, float division)
+{
+	mC((octave+1), division);
+}
+void mCS(int octave, float division)
+{
+	mDF(octave, division);
+}
+void mDS(int octave, float division)
+{
+	mEF(octave, division);
+}
+void mES(int octave, float division)
+{
+	mF(octave, division);
+}
+void mFS(int octave, float division)
+{
+	mGF(octave, division);
+}
+void mGS(int octave, float division)
+{
+	mAF(octave, division);
+}

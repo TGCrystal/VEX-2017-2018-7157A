@@ -305,3 +305,13 @@ void genesis_firthOfFifth()
 	bpm = 66;
 	mE(6, 16);
 }
+
+void genesis_theLambLiesDownOnBroadway_1()
+{
+	
+}
+
+void genesis_theLambLiesDownOnBroadway_2()
+{
+	
+}
