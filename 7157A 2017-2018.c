@@ -150,13 +150,11 @@ task autonomous() //runs when autonomous is started from a competion switch
 	autonomousMain(); //call the core of the autonomous code
 }
 
-float testF;
 task usercontrol() //runs when driver is selected from the competition switch or when the robot is turned on without a competition switch
 {
 	bLCDBacklight = true; //turn on the LCD backlight
 	LCD_clear(); //clear both lines on the LCD panel
 
-	testF = mGetFrequency(10, 4);
 	genesis_firthOfFifth();
 	menuLCDAndMainControl(); //launch the function for the main user and LCD control
 }

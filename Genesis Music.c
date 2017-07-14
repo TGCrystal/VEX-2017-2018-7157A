@@ -308,10 +308,93 @@ void genesis_firthOfFifth()
 
 void genesis_theLambLiesDownOnBroadway_1()
 {
+	bpm = 146;
 	
+	for(int j = 1; j <= 2; j++)
+	{
+		for(int i = 1; i <= 4; i++)
+		{
+			mB(5, 16);
+			mGF(5, 16);
+			mG(5, 16);
+			mGF(5, 16);
+			mE(5, 16);
+			mGF(5, 16);
+			mG(5, 16);
+			mGF(5, 16);
+		}
+		
+		for(int i = 1; i <= 4; i++)
+		{
+			mB(5, 16);
+			mGF(5, 16);
+			mAF(5, 16);
+			mGF(5, 16);
+			mE(5, 16);
+			mGF(5, 16);
+			mAF(5, 16);
+			mGF(5, 16);
+		}
+	}
+	
+	for(int i = 1; i <= 2; i++)
+	{
+		mB(5, 16);
+		mGF(5, 16);
+		mAF(5, 16);
+		mGF(5, 16);
+		mF(5, 16);
+		mGF(5, 16);
+		mAF(5, 16);
+		mGF(5, 16);
+		mDF(6, 16);
+		mGF(5, 16);
+		mAF(5, 16);
+		mGF(5, 16);
+		mF(5, 16);
+		mGF(5, 16);
+		mAF(5, 16);
+		mGF(5, 16);
+	}
+	
+	mB(5, 16);
+	mGF(5, 16);
+	mG(5, 16);
+	mGF(5, 16);
+	mE(6, 16);
+	mBF(5, 16);
+	mB(5, 16);
+	mBF(5, 16);
+	mG(6, 16);
+	mEF(6, 16);
+	mE(6, 16);
+	mEF(6, 16);
+	mB(6, 16);
+	mGF(6, 16);
+	mG(6, 16);
+	mGF(6, 16);
+	
+	mG(6, 16);
+	mEF(6, 16);
+	mE(6, 16);
+	mEF(6, 16);
+	mE(6, 16);
+	mBF(5, 16);
+	mB(5, 16);
+	mBF(5, 16);
+	mB(5, 16);
+	mGF(5, 16);
+	mG(5, 16);
+	mGF(5, 16);
+	mG(5, 16);
+	mEF(5, 16);
+	mE(5, 16);
+	mEF(5, 16);
 }
 
 void genesis_theLambLiesDownOnBroadway_2()
 {
+	bpm = 146;
+	
 	
 }
