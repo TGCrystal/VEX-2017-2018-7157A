@@ -1,7 +1,22 @@
 float bpm = 120.0;
+int transposition = 0;
 
 float mGetFrequency(int note, int octave)
 {
+	if(transpositon != 0)
+	{
+		note += transposition;
+		while(note > 12)
+		{
+			note -= 12;
+			octave++;
+		}
+		while(note < 1)
+		{
+			note += 12;
+			octave--;
+		}
+	}
 	float base;
 	float multiplier;
 	switch(note) {

@@ -155,6 +155,6 @@ task usercontrol() //runs when driver is selected from the competition switch or
 	bLCDBacklight = true; //turn on the LCD backlight
 	LCD_clear(); //clear both lines on the LCD panel
 
-	genesis_firthOfFifth();
+	genesis_theLambLiesDownOnBroadway_2();
 	menuLCDAndMainControl(); //launch the function for the main user and LCD control
 }
