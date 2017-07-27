@@ -70,6 +70,7 @@
 
 #include "Music Core.c" //just a fun program for playing music on the VEX Speaker Module
 #include "Genesis Music.c" //plays some Genesis music through the speakers
+#include "Dixieland Clarinet Music.c" //plays the Clarinet Dixieland Music that I have
 
 #include "LCD Functions And Variables.c" //required variables and functions for the LCD Menu Core to function
 /* Global Variables
