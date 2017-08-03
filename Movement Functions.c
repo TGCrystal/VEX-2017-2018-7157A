@@ -1,6 +1,6 @@
 float driveSpeedModifier()
 {
-	if(vexRT[Btn5D] == 1)
+	if(vexRT[Btn8U] == 1)
 	{
 		return .7;
 	}

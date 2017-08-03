@@ -30,18 +30,18 @@
 * Channel 2 (Ch2) - controls the left side of the drive
 * Channel 3 (Ch3) - controls the right side of the drive
 * Channel 4 (Ch4) - Unused
-* Button 5D (Btn5D) - Multiplies the power of the drive by .7 (in Movement Functions.c)
-* Button 5U (Btn5U) - Unused
-* Button 6D (Btn6D) - Unused
-* Button 6U (Btn6U) - Unused
-* Button 7D (Btn7D) - Unused
+* Button 5D (Btn5D) - Closes Claw
+* Button 5U (Btn5U) - Opens Claw
+* Button 6D (Btn6D) - Lower Telescoping Tower
+* Button 6U (Btn6U) - Raise Telescoping Tower
+* Button 7D (Btn7D) - Claw Rail Backwards
 * Button 7L (Btn7L) - Unused
 * Button 7R (Btn7R) - Unused
-* Button 7U (Btn7U) - Unused
+* Button 7U (Btn7U) - Claw Rail Forward
 * Button 8D (Btn8D) - Unused
-* Button 8L (Btn8L) - Unused
-* Button 8R (Btn8R) - Unused
-* Button 8U (Btn8U) - Unused
+* Button 8L (Btn8L) - Grip the mobile goal
+* Button 8R (Btn8R) - Ungrip the mobile goal
+* Button 8U (Btn8U) - Multiplies the drive power by .7 (Movement Functions.c)
 */
 /* Partner Controls
 * Channel 1 (Ch1) - Unused
@@ -89,7 +89,7 @@
 
 #include "Movement Functions.c" //functions that control movement, used by user control and autonomous code
 /* Methods
-* driveSpeedModifier() - if Button 5D is held then the powr of the drive is multiplied by .7
+* driveSpeedModifier() - if Button 7U is held then the powr of the drive is multiplied by .7
 * leftDrive(int leftDrivePower) - sets the power of both left motors to leftDrivePower
 * rightDrive(int rightDrivePower) - sets the power of both right motors to rightDrivePower
 * drive(int drivePower) - sets the power of all four drive motors to drivePower

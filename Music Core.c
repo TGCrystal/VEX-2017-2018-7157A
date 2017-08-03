@@ -3,7 +3,7 @@ int transposition = 0;
 
 float mGetFrequency(int note, int octave)
 {
-	if(transpositon != 0)
+	if(transposition != 0)
 	{
 		note += transposition;
 		while(note > 12)
