@@ -30,7 +30,7 @@ void LCD_updateBattery() //Displays the value of both batteries
 }
 void LCD_countdown() //used for the countdown after selecting programs on the lcd menu
 {
-	ClearTimer(T2); //clear the second timer
+	clearTimer(T2); //clear the second timer
 	LCD_clear(); //clear both lines of the lcd panel
 	displayLCDCenteredString(0, "Start In:"); //in the center of the first line display Start In:
 	int c = 0; //create a variable, c, that is used as a counter to slow down the change rate of the lcd panel

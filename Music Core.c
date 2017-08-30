@@ -97,8 +97,8 @@ float mGetDuration(float division)
 
 void PlayNote(float frequency, float duration)
 {
-	PlayImmediateTone(frequency, duration);
-	wait10Msec(duration);
+	playImmediateTone(frequency, duration);
+	wait1Msec(duration*10);
 }
 
 void mR(float division)

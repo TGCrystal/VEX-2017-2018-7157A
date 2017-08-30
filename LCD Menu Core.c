@@ -162,12 +162,12 @@ void menuLCDAndMainControl() //the controller for the lcd menu
 					case 1: //if 1:45 of drivetime has been selected
 						LCD_trialRun = true; //make it a trial run
 						LCD_timeforDriver = 105000; //give 105 seconds to drive
-						ClearTimer(T2);
+						clearTimer(T2);
 						break;
 					case 2: //if 1:00 of drivetime has been selected
 						LCD_trialRun = true; //make it a trial run
 						LCD_timeforDriver = 60000; //give 60 seconds of drivetime
-						ClearTimer(T2);
+						clearTimer(T2);
 						break;
 					case 3: //if the 15 second autonomous has been selected
 						autonomousMain(); //launch the competition autonomous code

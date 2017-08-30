@@ -2,7 +2,7 @@ long auton_Duration = 0; //how long the autonomous run lasted in milliseconds, g
 
 void autonomousMain() //launches the correct autonomous routine and records the total amount of time to complete
 {
-	ClearTimer(T2);
+	clearTimer(T2);
 	switch(auton_routine) {
 		case 0:
 			auton_skills();
