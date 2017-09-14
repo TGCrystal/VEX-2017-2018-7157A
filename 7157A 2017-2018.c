@@ -87,7 +87,7 @@
 * LCD_countdown() - runs a countdown of three seconds on the LCD panel
 */
 
-#include "Movement Functions.c" //functions that control movement, used by user control and autonomous code
+#include "Movement Core.c" //functions that control movement, used by user control and autonomous code
 /* Methods
 * driveSpeedModifier() - if Button 7U is held then the powr of the drive is multiplied by .7
 * leftDrive(int leftDrivePower) - sets the power of both left motors to leftDrivePower
