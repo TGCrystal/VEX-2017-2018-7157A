@@ -139,7 +139,10 @@
 
 void pre_auton() //runs when the robot is first turned on
 {
-	//LCD_autonomousSwitcher(); //comment this line out to disable the autonomous selector
+	if(nLCDButtons == 7) //the autonomous selector will only activate if all LCD buttons are pressed on launch
+	{
+		LCD_autonomousSwitcher();
+	}
 	clearEncoders(); //resets the encoders
 	bLCDBacklight = false;
 	bStopTasksBetweenModes = true; //honestly not quite sure what this does but I've had issues when setting it to false before

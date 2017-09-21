@@ -103,7 +103,7 @@ void PlayNote(float frequency, float duration)
 
 void mR(float division)
 {
-	wait10Msec(mGetDuration(division));
+	wait1Msec((mGetDuration(division))*10);
 }
 void mC(int octave, float division)
 {
