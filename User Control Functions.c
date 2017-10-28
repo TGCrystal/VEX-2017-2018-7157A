@@ -1,24 +1,100 @@
 void driveControl()
 {
-	if(abs(vexRT[Ch3]) > 30)
-	{
+	// if(abs(vexRT[Ch3]) > 30)
+	// {
 		leftDrive(vexRT[Ch3]);
+	// }
+	// else
+	// {
+		// leftDrive(0);
+	// }
+	// if(abs(vexRT[Ch2]) > 30)
+	// {
+		// rightDrive(vexRT[Ch2]);
+	// }
+	// else
+	// {
+		// rightDrive(0);
+	// }
+}
+
+void liftControl()
+{
+	if(vexRT[Btn7U] == 1)
+	{
+		lift(-127);
+	}
+	else if(vexRT[Btn7D] == 1)
+	{
+		lift(127);
 	}
 	else
 	{
-		leftDrive(0);
+		lift(0);
 	}
-	if(abs(vexRT[Ch2]) > 30)
+}
+
+void armControl()
+{
+	if(vexRT[Btn6U] == 1)
 	{
-		rightDrive(vexRT[Ch2]);
+		arm(-127);
+	}
+	else if(vexRT[Btn6D] == 1)
+	{
+		arm(127);
 	}
 	else
 	{
-		rightDrive(0);
+		arm(0);
+	}
+}
+
+void clawControl()
+{
+	if(vexRT[Btn5U] == 1)
+	{
+		claw(-127);
+	}
+	else if(vexRT[Btn5D] == 1)
+	{
+		claw(127);
+	}
+	else
+	{
+		claw(0);
+	}
+}
+
+void clawRotationControl()
+{
+	if(vexRT[Btn6U] == 1)
+	{
+		clawRotation(-90);
+	}
+	else if(vexRT[Btn6D] == 1)
+	{
+		clawRotation(90);
+	}
+	else if(vexRT[Btn8U] == 1)
+	{
+		clawRotation(-40);
+	}
+	else if(vexRT[Btn8D] == 1)
+	{
+		clawRotation(40);
+	}
+	else
+	{
+		clawRotation(0);
 	}
 }
 
 void userCode()
 {
 	driveControl();
+	liftControl();
+	armControl();
+	clawControl();
+	clawRotationControl();
 }
