@@ -1,23 +1,23 @@
 float driveSpeedModifier()
 {
-	// if(vexRT[Btn8U] == 1)
-	// {
-		// return .7;
-	// }
-	// else
-	// {
+	if(vexRT[Btn8U] == 1)
+	{
+		return .7;
+	}
+	else
+	{
 		return 1;
-	// }
+	}
 }
 
 void leftDrive(int leftDrivePower)
 {
-	motor[driveLeft] = driveSpeedModifier() * leftDrivePower;
+	motor[driveLeftMotor] = driveSpeedModifier() * leftDrivePower;
 }
 
 void rightDrive(int rightDrivePower)
 {
-	motor[driveRight] = driveSpeedModifier() * rightDrivePower;
+	motor[driveRightMotor] = driveSpeedModifier() * rightDrivePower;
 }
 
 void drive(int drivePower)

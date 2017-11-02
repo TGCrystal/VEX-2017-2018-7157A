@@ -1,21 +1,21 @@
 void driveControl()
 {
-	// if(abs(vexRT[Ch3]) > 30)
-	// {
+	if(abs(vexRT[Ch3]) > 30)
+	{
 		leftDrive(vexRT[Ch3]);
-	// }
-	// else
-	// {
-		// leftDrive(0);
-	// }
-	// if(abs(vexRT[Ch2]) > 30)
-	// {
-		// rightDrive(vexRT[Ch2]);
-	// }
-	// else
-	// {
-		// rightDrive(0);
-	// }
+	}
+	else
+	{
+		leftDrive(0);
+	}
+	if(abs(vexRT[Ch2]) > 30)
+	{
+		rightDrive(vexRT[Ch2]);
+	}
+	else
+	{
+		rightDrive(0);
+	}
 }
 
 void liftControl()
@@ -68,21 +68,21 @@ void clawControl()
 
 void clawRotationControl()
 {
-	if(vexRT[Btn6U] == 1)
+	// if(vexRT[Btn6U] == 1)
+	// {
+		// clawRotation(-90);
+	// }
+	// else if(vexRT[Btn6D] == 1)
+	// {
+		// clawRotation(90);
+	// }
+	if(vexRT[Btn8U] == 1)
 	{
-		clawRotation(-90);
-	}
-	else if(vexRT[Btn6D] == 1)
-	{
-		clawRotation(90);
-	}
-	else if(vexRT[Btn8U] == 1)
-	{
-		clawRotation(-40);
+		clawRotation(-127);
 	}
 	else if(vexRT[Btn8D] == 1)
 	{
-		clawRotation(40);
+		clawRotation(127);
 	}
 	else
 	{
