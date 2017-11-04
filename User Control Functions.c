@@ -20,11 +20,11 @@ void driveControl()
 
 void liftControl()
 {
-	if(vexRT[Btn7U] == 1)
+	if(vexRT[Btn8U] == 1)
 	{
 		lift(-127);
 	}
-	else if(vexRT[Btn7D] == 1)
+	else if(vexRT[Btn8D] == 1)
 	{
 		lift(127);
 	}
@@ -66,21 +66,13 @@ void clawControl()
 	}
 }
 
-void clawRotationControl()
+void clawRotationControl() //1==not pressed
 {
-	// if(vexRT[Btn6U] == 1)
-	// {
-		// clawRotation(-90);
-	// }
-	// else if(vexRT[Btn6D] == 1)
-	// {
-		// clawRotation(90);
-	// }
-	if(vexRT[Btn8U] == 1)
+	if(vexRT[Btn7D] == 1 && SensorValue[lowerBumper] == 1)
 	{
 		clawRotation(-127);
 	}
-	else if(vexRT[Btn8D] == 1)
+	else if(vexRT[Btn7U] == 1 && SensorValue[upperBumper] == 1)
 	{
 		clawRotation(127);
 	}

@@ -7,6 +7,12 @@ void autonomousMain() //launches the correct autonomous routine and records the 
 		case 0:
 			auton_skills();
 			break;
+		case 1:
+			blueMobileAuton();
+			break;
+		case 2:
+			blueMobileDouble();
+			break;
 		default:
 	}
 	auton_Duration = time1(T2);
@@ -16,7 +22,7 @@ void LCD_autonomousSwitcher()
 {
 	bLCDBacklight = true;
 	bool autonomousDecision = false;
-	const int NUM_OF_ROUTINES = 1 + 1; //Number of normal autonomous routines + the number of skills routines
+	const int NUM_OF_ROUTINES = 2 + 1; //Number of normal autonomous routines + the number of skills routines
 	LCD_clear();
 	while(!(autonomousDecision))
 	{
@@ -25,7 +31,10 @@ void LCD_autonomousSwitcher()
 			displayLCDCenteredString(0, "     Skills     ");
 			break;
 		case 1:
-			displayLCDCenteredString(0, "      Main      ");
+			displayLCDCenteredString(0, "Blue Mobile1Cone");
+			break;
+		case 2:
+			displayLCDCenteredString(0, "BlueMobile2Cones");
 			break;
 		default:
 			displayLCDCenteredString(0, "Error");
