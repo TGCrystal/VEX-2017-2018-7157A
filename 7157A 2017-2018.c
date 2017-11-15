@@ -1,8 +1,6 @@
 #pragma config(UART_Usage, UART1, uartVEXLCD, baudRate19200, IOPins, None, None)
 #pragma config(UART_Usage, UART2, uartNotUsed, baudRate4800, IOPins, None, None)
 #pragma config(Sensor, in1,    powerExpander,  sensorAnalog)
-#pragma config(Sensor, dgtl7,  upperBumper,    sensorDigitalIn)
-#pragma config(Sensor, dgtl8,  lowerBumper,    sensorDigitalIn)
 #pragma config(Sensor, dgtl9,  leftEncoder,    sensorQuadEncoder)
 #pragma config(Sensor, dgtl11, rightEncoder,   sensorQuadEncoder)
 #pragma config(Motor,  port1,           liftLeft,      tmotorVex393_HBridge, openLoop)
@@ -34,16 +32,16 @@
 * Channel 4 (Ch4) - Unused
 * Button 5D (Btn5D) - Closes claw
 * Button 5U (Btn5U) - Opens claw
-* Button 6D (Btn6D) - Moves arm to front, cycles claw Rotation accordingly
-* Button 6U (Btn6U) - Moves arm to back, cycles claw rotation accordingly
-* Button 7D (Btn7D) - Lowers the lift
+* Button 6D (Btn6D) - Moves arm to front
+* Button 6U (Btn6U) - Moves arm to back
+* Button 7D (Btn7D) - Unused
 * Button 7L (Btn7L) - Unused
 * Button 7R (Btn7R) - Unused
-* Button 7U (Btn7U) - Raises the lift
-* Button 8D (Btn8D) - Unused
+* Button 7U (Btn7U) - Unused
+* Button 8D (Btn8D) - Lower the lift
 * Button 8L (Btn8L) - Unused
 * Button 8R (Btn8R) - Unused
-* Button 8U (Btn8U) - Multiplies the drive power by .7 (Movement Functions.c)
+* Button 8U (Btn8U) - Raise the lift
 */
 /* Partner Controls
 * Channel 1 (Ch1) - Unused
@@ -95,6 +93,9 @@
 * leftDrive(int leftDrivePower) - sets the power of both left motors to leftDrivePower
 * rightDrive(int rightDrivePower) - sets the power of both right motors to rightDrivePower
 * drive(int drivePower) - sets the power of all four drive motors to drivePower
+* lift(int liftPower) - move the lift motors at liftPower
+* arm(int armPower) - move the arm at armPower
+* claw(int clawPower) - open/close the claw at clawPower
 */
 
 #include "Encoder Functions.c" //functions used by autonomous for using encoders
@@ -107,6 +108,9 @@
 #include "User Control Functions.c" //code that applies during the user control period
 /* Methods
 * driveControl() - uses the joysticks to control each side of the drive with tank style controls
+* liftControl() - raises the lift up and down
+* armcontrol() - flips the arm over
+* clawControl() - opens and closes the claw
 * userCode()- calls all of the methods in the file
 */
 

@@ -66,27 +66,10 @@ void clawControl()
 	}
 }
 
-void clawRotationControl() //1==not pressed
-{
-	if(vexRT[Btn7D] == 1 && SensorValue[lowerBumper] == 1)
-	{
-		clawRotation(-127);
-	}
-	else if(vexRT[Btn7U] == 1 && SensorValue[upperBumper] == 1)
-	{
-		clawRotation(127);
-	}
-	else
-	{
-		clawRotation(0);
-	}
-}
-
 void userCode()
 {
 	driveControl();
 	liftControl();
 	armControl();
 	clawControl();
-	clawRotationControl();
 }

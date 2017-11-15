@@ -1,13 +1,13 @@
 float driveSpeedModifier()
 {
-	if(vexRT[Btn8U] == 1)
-	{
-		return .7;
-	}
-	else
-	{
+	// if(vexRT[Btn8U] == 1)
+	// {
+		// return .7;
+	// }
+	// else
+	// {
 		return 1;
-	}
+	// }
 }
 
 void leftDrive(int leftDrivePower)
@@ -43,9 +43,4 @@ void arm(int armPower)
 void claw(int clawPower)
 {
 	motor[clawSolo] = clawPower;
-}
-
-void clawRotation(int clawRotationPower)
-{
-	motor[clawRotationSolo] = clawRotationPower;
 }
