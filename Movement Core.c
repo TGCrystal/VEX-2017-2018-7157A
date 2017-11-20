@@ -12,12 +12,14 @@ float driveSpeedModifier()
 
 void leftDrive(int leftDrivePower)
 {
-	motor[driveLeftMotor] = driveSpeedModifier() * leftDrivePower;
+	motor[driveLeftFront] = driveSpeedModifier() * leftDrivePower;
+	motor[driveLeftRear] = driveSpeedModifier() * leftDrivePower;
 }
 
 void rightDrive(int rightDrivePower)
 {
-	motor[driveRightMotor] = driveSpeedModifier() * rightDrivePower;
+	motor[driveRightFront] = driveSpeedModifier() * rightDrivePower;
+	motor[driveRightRear] = driveSpeedModifier() * rightDrivePower;
 }
 
 void drive(int drivePower)
@@ -34,13 +36,11 @@ void lift(int liftPower)
 
 void arm(int armPower)
 {
-	motor[armLeft1] = armPower;
-	motor[armRight1] = armPower;
-	motor[armLeft2] = armPower;
-	motor[armRight2] = armPower;
+	motor[armLeft] = armPower;
+	motor[armRight] = armPower;
 }
 
 void claw(int clawPower)
 {
-	motor[clawSolo] = clawPower;
+	motor[clawMotor] = clawPower;
 }
