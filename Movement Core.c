@@ -44,3 +44,15 @@ void claw(int clawPower)
 {
 	motor[clawMotor] = clawPower;
 }
+
+void pExtend()
+{
+	SensorValue[rightCylinder] = 1;
+	SensorValue[leftCylinder] = 1;
+}
+
+void pRetract()
+{
+	SensorValue[rightCylinder] = 0;
+	SensorValue[leftCylinder] = 0;
+}

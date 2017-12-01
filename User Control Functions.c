@@ -52,17 +52,29 @@ void armControl()
 
 void clawControl()
 {
-	if(vexRT[Btn5U] == 1)
+	if(vexRT[Btn5D] == 1)
 	{
 		claw(-127);
 	}
-	else if(vexRT[Btn5D] == 1)
+	else if(vexRT[Btn5U] == 1)
 	{
 		claw(127);
 	}
 	else
 	{
 		claw(0);
+	}
+}
+
+void pControl()
+{
+	if(vexRT[Btn7D] == 1)
+	{
+		pExtend();
+	}
+	else if(vexRT[Btn7U] == 1)
+	{
+		pRetract();
 	}
 }
 
