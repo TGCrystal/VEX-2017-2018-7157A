@@ -84,4 +84,5 @@ void userCode()
 	liftControl();
 	armControl();
 	clawControl();
+	pControl();
 }
