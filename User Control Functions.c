@@ -36,13 +36,21 @@ void liftControl()
 
 void armControl()
 {
-	if(vexRT[Btn6U] == 1)
+	if(vexRT[Btn6D] == 1)
 	{
 		arm(-127);
 	}
-	else if(vexRT[Btn6D] == 1)
+	else if(vexRT[Btn6U] == 1)
 	{
 		arm(127);
+	}
+	else if (vexRT[Btn8R] == 1)
+	{
+		arm(50);
+	}
+	else if (vexRT[Btn8L] == 1)
+	{
+		arm(-50);
 	}
 	else
 	{
@@ -68,11 +76,11 @@ void clawControl()
 
 void pControl()
 {
-	if(vexRT[Btn7D] == 1)
+	if(vexRT[Btn7U] == 1)
 	{
 		pExtend();
 	}
-	else if(vexRT[Btn7U] == 1)
+	else if(vexRT[Btn7D] == 1)
 	{
 		pRetract();
 	}
