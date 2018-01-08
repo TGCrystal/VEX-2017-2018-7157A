@@ -17,6 +17,7 @@ void blueMobileAuton() //get mobile goal on the blue side, auton_routine=1
 		mTM = 1;
 		mPM = 1;
 	}
+	
 	else if(nImmediateBatteryLevel < 8000)
 	{
 		mTM = .84;
@@ -55,14 +56,14 @@ void blueMobileAuton() //get mobile goal on the blue side, auton_routine=1
 	arm(0);
 	
 	drive(70 * mPM);
-	wait1Msec(325 * mTM);
+	wait1Msec(300 * mTM);
 	drive(0);
 	
 	claw(0);
 	arm(127 * bPM);
-	wait1Msec(1800 * bTM);
+	wait1Msec(1400 * bTM);
 	claw(127);
-	wait1Msec(1000 * bTM);
+	wait1Msec(1400 * bTM);
 	arm(0);
 	wait1Msec(500 * bTM);
 	claw(0);

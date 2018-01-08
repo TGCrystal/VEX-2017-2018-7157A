@@ -62,7 +62,7 @@ void clawControl()
 {
 	if(vexRT[Btn5D] == 1)
 	{
-		claw(-127);
+		claw(-127); 
 	}
 	else if(vexRT[Btn5U] == 1)
 	{
