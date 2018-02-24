@@ -34,6 +34,7 @@ void liftControl()
 	}
 }
 
+
 void armControl()
 {
 	if(vexRT[Btn6D] == 1)
@@ -46,11 +47,15 @@ void armControl()
 	}
 	else if (vexRT[Btn8R] == 1)
 	{
-		arm(50);
+		arm(3540-SensorValue[armPot]);
+	}
+	else if (vexRT[Btn8U] == 1)
+	{
+		arm(1333-SensorValue[armPot]);
 	}
 	else if (vexRT[Btn8L] == 1)
 	{
-		arm(-50);
+		arm((2440-SensorValue[armPot])/2);
 	}
 	else
 	{
@@ -86,11 +91,28 @@ void pControl()
 	}
 }
 
+void goalControl()
+{
+	if(vexRT[Btn7U] == 1)
+	{
+		goal(127);
+	}
+	else if(vexRT[Btn7D] == 1)
+	{
+		goal(-127);
+	}
+	else
+	{
+		goal(0);
+	}
+}
+
 void userCode()
 {
 	driveControl();
 	liftControl();
 	armControl();
 	clawControl();
-	pControl();
+	// pControl();
+	goalControl();
 }

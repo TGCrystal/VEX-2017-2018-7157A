@@ -12,14 +12,14 @@ float driveSpeedModifier()
 
 void leftDrive(int leftDrivePower)
 {
-	motor[driveLeftFront] = driveSpeedModifier() * leftDrivePower;
-	motor[driveLeftRear] = driveSpeedModifier() * leftDrivePower;
+	motor[driveLeftTop] = driveSpeedModifier() * leftDrivePower;
+	motor[driveLeftBottom] = driveSpeedModifier() * leftDrivePower;
 }
 
 void rightDrive(int rightDrivePower)
 {
-	motor[driveRightFront] = driveSpeedModifier() * rightDrivePower;
-	motor[driveRightRear] = driveSpeedModifier() * rightDrivePower;
+	motor[driveRightTop] = driveSpeedModifier() * rightDrivePower;
+	motor[driveRightBottom] = driveSpeedModifier() * rightDrivePower;
 }
 
 void drive(int drivePower)
@@ -55,4 +55,9 @@ void pRetract()
 {
 	SensorValue[rightCylinder] = 0;
 	SensorValue[leftCylinder] = 0;
+}
+
+void goal(int goalPower)
+{
+	motor[goalMotor] = goalPower;
 }
