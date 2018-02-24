@@ -3,7 +3,7 @@
 #pragma config(Sensor, in1,    powerExpander,  sensorAnalog)
 #pragma config(Sensor, in2,    armPot,         sensorPotentiometer)
 #pragma config(Sensor, dgtl5,  armEncoder,     sensorQuadEncoder)
-#pragma config(Sensor, dgtl7,  leftCylinder,   sensorDigitalOut)
+#pragma config(Sensor, dgtl7,  lowerBumper,    sensorTouch)
 #pragma config(Sensor, dgtl8,  rightCylinder,  sensorDigitalOut)
 #pragma config(Sensor, dgtl9,  leftEncoder,    sensorQuadEncoder)
 #pragma config(Sensor, dgtl11, rightEncoder,   sensorQuadEncoder)

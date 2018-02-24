@@ -103,7 +103,7 @@ void goalControl()
 	}
 	else
 	{
-		goal(0);
+		motor[goalMotor] = 0;
 	}
 }
 

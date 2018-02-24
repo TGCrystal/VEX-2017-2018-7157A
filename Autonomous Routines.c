@@ -1,4 +1,4 @@
-int auton_routine = 1; //Indicates which autonomous routine will run
+int auton_routine = 2; //Indicates which autonomous routine will run
 
 void auton_skills() //The autonomous routine for the one minute skills challenge, auton_routine=0
 {
@@ -7,23 +7,37 @@ void auton_skills() //The autonomous routine for the one minute skills challenge
 
 void blueMobileAuton() //get high goal, auton_routine=1
 {
+	
+	while(SensorValue[lowerBumper] == 0)
+	{
+		motor[goalMotor] = -127;
+	}
+	motor[goalMotor] = 0;
+	
+}
+
+void blueMobileDouble() //get mobile goal, auton_routine=2
+{
+claw(0);
 	clearTimer(T1);
-	while(time1(T1) < 750)
+	while(time1(T1) < 1750)
 	{
 		arm((2440-SensorValue[armPot])/2);
 	}
 	arm(0);
 	
-	goal(90);
-	wait1Msec(500);
-	goal(0);
+	while(SensorValue[lowerBumper] == 0)
+	{
+		motor[goalMotor] = -127;
+	}
+	motor[goalMotor] = 0;
 	
 	drive(127);
 	wait1Msec(2750);
 	drive(0);
 	
-	goal(-90);
-	wait1Msec(500);
+	goal(127);
+	wait1Msec(1000);
 	goal(0);
 	
 	arm(-127);
@@ -32,8 +46,14 @@ void blueMobileAuton() //get high goal, auton_routine=1
 	wait1Msec(250);
 	
 	drive(-127);
-	wait1Msec(3000);
+	wait1Msec(2600);
 	drive(0);
+	
+	leftDrive(-127);
+	rightDrive(127);
+	wait1Msec(1000);
+	leftDrive(0);
+	rightDrive(0);
 	
 	claw(100);
 	clearTimer(T1);
@@ -43,15 +63,10 @@ void blueMobileAuton() //get high goal, auton_routine=1
 	}
 	arm(0);
 	
-	goal(90);
+	goal(-127);
 	drive(-127);
-	wait1Msec(500);
+	wait1Msec(1000);
 	goal(0);
 	wait1Msec(1000);
 	drive(0);
-}
-
-void blueMobileDouble() //get mobile goal, auton_routine=2
-{
-	
 }

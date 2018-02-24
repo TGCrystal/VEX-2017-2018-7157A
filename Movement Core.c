@@ -48,16 +48,24 @@ void claw(int clawPower)
 void pExtend()
 {
 	SensorValue[rightCylinder] = 1;
-	SensorValue[leftCylinder] = 1;
+	// SensorValue[leftCylinder] = 1;
 }
 
 void pRetract()
 {
 	SensorValue[rightCylinder] = 0;
-	SensorValue[leftCylinder] = 0;
+	// SensorValue[leftCylinder] = 0;
 }
 
 void goal(int goalPower)
 {
-	motor[goalMotor] = goalPower;
+	// motor[goalMotor] = (((2*(SensorValue[lowerBumper]))-1)*abs(goalPower) + goalPower)/2;
+	if((SensorValue[lowerBumper] == 0) || (goalPower > 0))
+	{
+		motor[goalMotor] = goalPower;
+	}
+	else
+	{
+		motor[goalPower] = 0;
+	}
 }
