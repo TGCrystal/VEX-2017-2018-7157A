@@ -36,9 +36,10 @@ claw(0);
 	wait1Msec(2750);
 	drive(0);
 	
-	goal(127);
-	wait1Msec(1000);
-	goal(0);
+	while((SensorValue[upperBumper1]+SensorValue[upperBumper2]) == 0)
+	{
+		motor[goalMotor] = 127;
+	}
 	
 	arm(-127);
 	wait1Msec(500);
@@ -63,10 +64,13 @@ claw(0);
 	}
 	arm(0);
 	
-	goal(-127);
-	drive(-127);
-	wait1Msec(1000);
-	goal(0);
+	clearTimer(T1);
+	while(SensorValue[lowerBumper] == 0)
+	{
+		motor[goalMotor] = -127;
+	}
+	while(time1(T1) < 1000) {}
+	motor[goalMotor] = 0;
 	wait1Msec(1000);
 	drive(0);
 }
