@@ -24,8 +24,8 @@ void blueMobileAuton() //get high goal, auton_routine=1
 
 void blueMobileDouble() //get mobile goal, auton_routine=2
 {
-claw(0);
-wait1Msec(400);
+	claw(0);
+	wait1Msec(400);
 	clearTimer(T1);
 	arm(127);
 	wait1Msec(2000);
