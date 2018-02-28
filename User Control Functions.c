@@ -105,6 +105,19 @@ void goalControl()
 	{
 		motor[goalMotor] = 0;
 	}
+	
+	if(vexRT[Btn7L] == 1)
+	{
+		goalGrab(127);
+	}
+	else if(vexRT[Btn7R] == 1)
+	{
+		goalGrab(-127);
+	}
+	else
+	{
+		goalGrab(0);
+	}
 }
 
 void userCode()

@@ -3,18 +3,7 @@ long auton_Duration = 0; //how long the autonomous run lasted in milliseconds, g
 void autonomousMain() //launches the correct autonomous routine and records the total amount of time to complete
 {
 	clearTimer(T2);
-	switch(auton_routine) {
-		case 0:
-			auton_skills();
-			break;
-		case 1:
-			blueMobileAuton();
-			break;
-		case 2:
-			blueMobileDouble();
-			break;
-		default:
-	}
+	auton_switchLauncher();
 	auton_Duration = time1(T2);
 }
 
@@ -26,19 +15,8 @@ void LCD_autonomousSwitcher()
 	LCD_clear();
 	while(!(autonomousDecision))
 	{
-		switch(auton_routine) {
-		case 0:
-			displayLCDCenteredString(0, "     Skills     ");
-			break;
-		case 1:
-			displayLCDCenteredString(0, "Blue Mobile1Cone");
-			break;
-		case 2:
-			displayLCDCenteredString(0, "BlueMobile2Cones");
-			break;
-		default:
-			displayLCDCenteredString(0, "Error");
-	}
+		auton_switchOptions();
+		
 		displayLCDCenteredString(1, "<     Enter    >");
 		if((nLCDButtons == 1)) //if the left button on the LCD panel is pressed
 		{

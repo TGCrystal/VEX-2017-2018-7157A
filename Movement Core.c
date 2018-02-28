@@ -36,13 +36,17 @@ void lift(int liftPower)
 
 void arm(int armPower)
 {
-	motor[armLeft] = armPower;
-	motor[armRight] = armPower;
+	motor[armMotor] = armPower;
 }
 
 void claw(int clawPower)
 {
 	motor[clawMotor] = clawPower;
+}
+
+void goalGrab(int goalGrabberPower)
+{
+	motor[goalGrabber] = goalGrabberPower;
 }
 
 void pExtend()
