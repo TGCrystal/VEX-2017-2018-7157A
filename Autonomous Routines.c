@@ -6,20 +6,7 @@ void auton_skills() //The autonomous routine for the one minute skills challenge
 
 void blueMobileAuton() //get high goal, auton_routine=1
 {
-	while(true)
-	{
-		while(SensorValue[lowerBumper] == 0)
-		{
-			motor[goalMotor] = -127;
-		}
-		motor[goalMotor] = 0;
-		
-		while((SensorValue[upperBumper1]+SensorValue[upperBumper2]) == 0)
-		{
-			motor[goalMotor] = 127;
-		}
-		motor[goalMotor] = 0;
-	}
+	
 }
 
 void blueMobileDouble() //get mobile goal, auton_routine=2
@@ -31,11 +18,11 @@ void blueMobileDouble() //get mobile goal, auton_routine=2
 	wait1Msec(2000);
 	arm(0);
 	
-	while(SensorValue[lowerBumper] == 0)
-	{
-		motor[goalMotor] = -127;
-	}
-	motor[goalMotor] = 0;
+	// while(SensorValue[lowerBumper] == 0)
+	// {
+		// motor[goalMotor] = -127;
+	// }
+	// motor[goalMotor] = 0;
 	
 	drive(127);
 	wait1Msec(2750);
@@ -66,12 +53,12 @@ void blueMobileDouble() //get mobile goal, auton_routine=2
 	drive(0);
 	
 	clearTimer(T1);
-	while(SensorValue[lowerBumper] == 0)
-	{
-		motor[goalMotor] = -127;
-	}
-	while(time1(T1) < 1000) {}
-	motor[goalMotor] = 0;
+	// while(SensorValue[lowerBumper] == 0)
+	// {
+		// motor[goalMotor] = -127;
+	// }
+	// while(time1(T1) < 1000) {}
+	// motor[goalMotor] = 0;
 	goalGrab(-127);
 	wait1Msec(300);
 	goalGrab(0);
