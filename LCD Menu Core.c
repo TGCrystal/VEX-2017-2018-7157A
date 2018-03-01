@@ -45,7 +45,7 @@ void menuLCDAndMainControl() //the controller for the lcd menu
 	int LCD_refreshCounter = 0; //tick counter for refreshing the battery values on the LCD panel
 	int LCD_holdTime = 0; //counter used for activating the menu
 	bool LCD_selectProgram = false; //the selected program will activate if true
-	LCD_menuOption = 0; //signifies the prgram selected in the menu
+	LCD_menuOption = 0; //signifies the program selected in the menu
 	bool LCD_menuMode = false; //when true, the menu shows up on the LCD panel
 	bool LCD_lockMenuChanger = false; //prevents the menu options from cycling through really fast
 	long LCD_timeforDriver = 0; //if trial run is true, this is how long in milliseconds it will be

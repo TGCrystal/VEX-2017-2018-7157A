@@ -42,6 +42,7 @@ void sEncoDrive(int drivePower, int driveEncoderValue) //new experimental method
 	clearEncoders();
 	clearLCDLine(0);
 	clearLCDLine(1);
+	int actionTolerance = 40;
 	
 	if(((drivePower > 0) && (driveEncoderValue < 0)) || ((drivePower < 0) && (driveEncoderValue > 0))) //drive power and encoder distance are not the same sign
 	{
@@ -55,14 +56,63 @@ void sEncoDrive(int drivePower, int driveEncoderValue) //new experimental method
 	}
 	else if(drivePower > 0) //moving forward
 	{
-		for(int i = drivePower/5; i < drivePower; i++)
+		for(int i = (drivePower/5); i < drivePower; i++)
 		{
 			drive(drivePower);
 			wait1Msec(10);
+			if((SensorValue[leftEncoder] > (driveEncoderValue - actionTolerance)) || (SensorValue[rightEncoder] > (driveEncoderValue - actionTolerance)))
+			{
+				i = drivePower;
+				
+			}
 		}
-		while((SensorValue[leftEncoder] < driveEncoderValue) || (SensorValue[rightEncoder] < driveEncoderValue))
+		
+		int leftPower = drivePower;
+		int rightPower = drivePower;
+		while((SensorValue[leftEncoder] < (driveEncoderValue - actionTolerance)) || (SensorValue[rightEncoder] < (driveEncoderValue - actionTolerance)))
 		{
+			if(SensorValue[leftEncoder] > SensorValue[rightEncoder])
+			{
+				leftPower--;
+				rightPower++;
+			}
+			else if(SensorValue[leftEncoder] < SensorValue[rightEncoder])
+			{
+				leftPower++;
+				rightPower--;
+			}
 			
+			if(leftPower > drivePower)
+			{
+				leftPower = drivePower;
+			}
+			else if(rightPower > drivePower)
+			{
+				rightPower = drivePower;
+			}
+			if(leftPower < (drivePower/5))
+			{
+				leftPower = (drivePower/5);
+			}
+			else if(rightPower < (drivePower/5))
+			{
+				rightPower = (drivePower/5);
+			}
+			
+			leftDrive(leftPower);
+			rightDrive(rightPower);
+		}
+		
+		for(int i = drivePower; i > (drivePower/5); i--)
+		{
+			drive(drivePower);
+			wait1Msec(10);
+			if((SensorValue[leftEncoder] > (driveEncoderValue - actionTolerance)) || (SensorValue[rightEncoder] > (driveEncoderValue - actionTolerance)))
+			{
+				i = drivePower;
+				
+			}
 		}
 	}
+	drive(0);
 }
