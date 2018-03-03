@@ -1,7 +1,7 @@
-int auton_routine = 2; //Indicates which autonomous routine will run
+int auton_routine = 0; //Indicates which autonomous routine will run
 void auton_skills() //The autonomous routine for the one minute skills challenge, auton_routine=0
 {
-	drive(127);
+	sEncoDrive(127, 1000);
 }
 
 void blueMobileAuton() //get high goal, auton_routine=1

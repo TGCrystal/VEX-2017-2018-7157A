@@ -58,7 +58,7 @@ void sEncoDrive(int drivePower, int driveEncoderValue) //new experimental method
 	{
 		for(int i = (drivePower/5); i < drivePower; i++)
 		{
-			drive(drivePower);
+			drive(i);
 			wait1Msec(10);
 			if((SensorValue[leftEncoder] > (driveEncoderValue - actionTolerance)) || (SensorValue[rightEncoder] > (driveEncoderValue - actionTolerance)))
 			{
@@ -66,7 +66,6 @@ void sEncoDrive(int drivePower, int driveEncoderValue) //new experimental method
 				
 			}
 		}
-		
 		int leftPower = drivePower;
 		int rightPower = drivePower;
 		while((SensorValue[leftEncoder] < (driveEncoderValue - actionTolerance)) || (SensorValue[rightEncoder] < (driveEncoderValue - actionTolerance)))
@@ -105,11 +104,11 @@ void sEncoDrive(int drivePower, int driveEncoderValue) //new experimental method
 		
 		for(int i = drivePower; i > (drivePower/5); i--)
 		{
-			drive(drivePower);
+			drive(i);
 			wait1Msec(10);
 			if((SensorValue[leftEncoder] > (driveEncoderValue - actionTolerance)) || (SensorValue[rightEncoder] > (driveEncoderValue - actionTolerance)))
 			{
-				i = drivePower;
+				i = drivePower/5;
 				
 			}
 		}
