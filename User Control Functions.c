@@ -95,29 +95,18 @@ void goalControl()
 {
 	if(vexRT[Btn7U] == 1)
 	{
-		goal(127);
+		goalUp();
 	}
 	else if(vexRT[Btn7D] == 1)
 	{
-		goal(-127);
+		goalDown();
 	}
 	else
 	{
 		motor[goalMotor] = 0;
 	}
 	
-	if(vexRT[Btn7L] == 1)
-	{
-		goalGrab(127);
-	}
-	else if(vexRT[Btn7R] == 1)
-	{
-		goalGrab(-127);
-	}
-	else
-	{
-		goalGrab(0);
-	}
+	
 }
 
 void userCode()

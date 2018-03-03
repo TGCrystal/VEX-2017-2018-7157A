@@ -61,7 +61,17 @@ void pRetract()
 	// SensorValue[leftCylinder] = 0;
 }
 
-void goal(int goalPower)
+void goal(int goalPower) //up = positive, down = negative
 {
 	motor[goalMotor] = goalPower;
+}
+
+void goalUp()
+{
+	motor[goalMotor] = 5*(SensorValue[goalPot] - 4095);
+}
+
+void goalDown()
+{
+	motor[goalMotor] = 5*(SensorValue[goalPot] - 4095);
 }
