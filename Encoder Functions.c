@@ -63,7 +63,6 @@ void sEncoDrive(int drivePower, int driveEncoderValue) //new experimental method
 			if((SensorValue[leftEncoder] > (driveEncoderValue - actionTolerance)) || (SensorValue[rightEncoder] > (driveEncoderValue - actionTolerance)))
 			{
 				i = drivePower;
-				
 			}
 		}
 		int leftPower = drivePower;
@@ -107,6 +106,64 @@ void sEncoDrive(int drivePower, int driveEncoderValue) //new experimental method
 			drive(i);
 			wait1Msec(10);
 			if((SensorValue[leftEncoder] > (driveEncoderValue - actionTolerance)) || (SensorValue[rightEncoder] > (driveEncoderValue - actionTolerance)))
+			{
+				i = drivePower/5;
+				
+			}
+		}
+	}
+	else if(drivePower > 0) //moving backward
+	{
+		for(int i = (drivePower/5); i > drivePower; i--)
+		{
+			drive(i);
+			wait1Msec(10);
+			if((SensorValue[leftEncoder] < (driveEncoderValue + actionTolerance)) || (SensorValue[rightEncoder] < (driveEncoderValue + actionTolerance)))
+			{
+				i = drivePower;
+			}
+		}
+		int leftPower = drivePower;
+		int rightPower = drivePower;
+		while((SensorValue[leftEncoder] > (driveEncoderValue + actionTolerance)) || (SensorValue[rightEncoder] > (driveEncoderValue + actionTolerance)))
+		{
+			if(SensorValue[leftEncoder] < SensorValue[rightEncoder])
+			{
+				leftPower--;
+				rightPower++;
+			}
+			else if(SensorValue[leftEncoder] > SensorValue[rightEncoder])
+			{
+				leftPower++;
+				rightPower--;
+			}
+			
+			if(leftPower < drivePower)
+			{
+				leftPower = drivePower;
+			}
+			else if(rightPower < drivePower)
+			{
+				rightPower = drivePower;
+			}
+			if(leftPower > (drivePower/5))
+			{
+				leftPower = (drivePower/5);
+			}
+			else if(rightPower > (drivePower/5))
+			{
+				rightPower = (drivePower/5);
+			}
+			
+			leftDrive(leftPower);
+			rightDrive(rightPower);
+		}
+		
+		for(int i = drivePower; i < (drivePower/5); i++)
+		{
+			drive(i);
+			wait1Msec(10);
+			if((SensorValue[leftEncoder] < (driveEncoderValue + actionTolerance)) || (SensorValue[rightEncoder] < (driveEncoderValue + actionTolerance)))
 			{
 				i = drivePower/5;
 				
