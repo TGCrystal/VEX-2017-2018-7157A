@@ -68,10 +68,26 @@ void goal(int goalPower) //up = positive, down = negative
 
 void goalUp()
 {
-	motor[goalMotor] = 5*(SensorValue[goalPot] - 4095);
+	int goalUpPot = 1340;
+	if((SensorValue[goalPot] < (goalUpPot + 100)) && (SensorValue[goalPot] > (goalUpPot - 100)))
+	{
+		motor[goalMotor] = ((SensorValue[goalPot] - goalUpPot)/3);
+	}
+	else
+	{
+		motor[goalMotor] = (SensorValue[goalPot] - goalUpPot);
+	}
 }
 
 void goalDown()
 {
-	motor[goalMotor] = 5*(SensorValue[goalPot] - 4095);
+	int goalDownPot = 3285;
+	if((SensorValue[goalPot] < (goalDownPot + 100)) && (SensorValue[goalPot] > (goalDownPot - 100)))
+	{
+		motor[goalMotor] = ((SensorValue[goalPot] - goalDownPot)/2);
+	}
+	else
+	{
+		motor[goalMotor] = (SensorValue[goalPot] - goalDownPot);
+	}
 }
