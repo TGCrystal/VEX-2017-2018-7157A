@@ -81,7 +81,23 @@ void goalUp()
 
 void goalDown()
 {
-	int goalDownPot = 3285;
+	int goalDownPot = 3250;
+	if((SensorValue[goalPot] > (goalDownPot - 20)))
+	{
+		motor[goalMotor] = 0;
+	}
+	else if((SensorValue[goalPot] < (goalDownPot + 150)) && (SensorValue[goalPot] > (goalDownPot - 150)))
+	{
+		motor[goalMotor] = ((SensorValue[goalPot] - goalDownPot)/2);
+	}
+	else
+	{
+		motor[goalMotor] = ((SensorValue[goalPot] - goalDownPot));
+	}
+}
+
+void toGoalPos(int goalDownPot)
+{
 	if((SensorValue[goalPot] < (goalDownPot + 100)) && (SensorValue[goalPot] > (goalDownPot - 100)))
 	{
 		motor[goalMotor] = ((SensorValue[goalPot] - goalDownPot)/2);

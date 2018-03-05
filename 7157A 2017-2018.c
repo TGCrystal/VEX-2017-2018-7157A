@@ -151,7 +151,7 @@ void pre_auton() //runs when the robot is first turned on
 	{
 		LCD_autonomousSwitcher();
 	}
-	claw(127);
+	claw(0);
 	clearEncoders(); //resets the encoders
 	bLCDBacklight = false;
 	bStopTasksBetweenModes = true; //honestly not quite sure what this does but I've had issues when setting it to false before
