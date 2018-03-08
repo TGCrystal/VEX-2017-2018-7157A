@@ -1,25 +1,31 @@
 int auton_routine = 1; //Indicates which autonomous routine will run
-void auton_skills() //The autonomous routine for the one minute skills challenge, auton_routine=0
+void auton_test() //The autonomous routine for the one minute skills challenge, auton_routine=0
 {
-	sEncoDrive(-127, -1000);
+	drive(127);
 }
 
-void blueMobileAuton() //get high goal, auton_routine=1
+void auton_rightMobile() //get high goal, auton_routine=1
 {
 	claw(-127);
 	wait1Msec(300);
 	clearTimer(T4);
 	
-	
-	
 	int actionTolerance = 40;
 	int drivePower = 127;
-	int driveEncoderValue = 1100;
+	int driveEncoderValue = 900;
 	clearEncoders();
 		for(int i = (drivePower/5); i < drivePower; i++)
 		{
 			drive(i);
 			arm((2278-SensorValue[armPot])/10);
+			if(SensorValue[goalPot] < 3250)
+			{
+				goal(-127);
+			}
+			else
+			{
+				goal(0);
+			}
 			wait1Msec(10);
 			if((SensorValue[leftEncoder] > (driveEncoderValue - actionTolerance)) || (SensorValue[rightEncoder] > (driveEncoderValue - actionTolerance)))
 			{
@@ -30,7 +36,14 @@ void blueMobileAuton() //get high goal, auton_routine=1
 		int rightPower = drivePower;
 		while((SensorValue[leftEncoder] < (driveEncoderValue - actionTolerance)) || (SensorValue[rightEncoder] < (driveEncoderValue - actionTolerance)))
 		{
-			goalDown();
+			if(SensorValue[goalPot] < 3250)
+			{
+				goal(-127);
+			}
+			else
+			{
+				goal(0);
+			}
 			arm((2278-SensorValue[armPot])/10);
 			if(SensorValue[leftEncoder] > SensorValue[rightEncoder])
 			{
@@ -67,6 +80,14 @@ void blueMobileAuton() //get high goal, auton_routine=1
 		for(int i = drivePower; i > (drivePower/5); i--)
 		{
 			drive(i);
+			if(SensorValue[goalPot] < 3250)
+			{
+				goal(-127);
+			}
+			else
+			{
+				goal(0);
+			}
 			wait1Msec(10);
 			if((SensorValue[leftEncoder] > (driveEncoderValue)) || (SensorValue[rightEncoder] > (driveEncoderValue)))
 			{
@@ -75,91 +96,194 @@ void blueMobileAuton() //get high goal, auton_routine=1
 			}
 		}
 		drive(0);
+		arm(0);
 	
-	
-	// while(time1(T4) < 2000)
-	// {
-		// arm((3700-SensorValue[armPot])/9);
-	// }
-	// while(SensorValue[armPot] < 2440 + 30) {
-		// arm((2440-SensorValue[armPot])/10);
-	// }
-	// wait1Msec(100);
-	// while(SensorValue[armPot] > 2440) {
-		// arm((2440-SensorValue[armPot])/4);
-	// }
+	while(SensorValue[goalPot] > 1350)
+	{
+		goal(127);
+	}
+	goal(0);
+	arm(-127);
+	while(SensorValue[armPot] > 1250) {}
 	arm(0);
+	
+	sEncoDrive(-127, -700);
+	encoderDrive(-127, -400, 127, 400);
+	claw(0);
+	
+	encoderDrive(80, 250, 127, 400);
+	
+	arm(127);
+	while(SensorValue[armPot] < 2500) {}
+	arm(0);
+	
+	while(SensorValue[goalPot] < 2750)
+	{
+		goal(-127);
+	}
+	goal(0);
+	
+	drive(127);
+	wait1Msec(400);
+	drive(-127);
+	wait1Msec(800);
+	drive(0);
 }
 
-void blueMobileDouble() //get mobile goal, auton_routine=2
+void auton_leftMobile() //get mobile goal, auton_routine=2
 {
-	claw(0);
-	wait1Msec(400);
-	clearTimer(T1);
-	arm(127);
-	wait1Msec(2000);
+	claw(-127);
+	wait1Msec(300);
+	clearTimer(T4);
+	
+	int actionTolerance = 40;
+	int drivePower = 127;
+	int driveEncoderValue = 900;
+	clearEncoders();
+		for(int i = (drivePower/5); i < drivePower; i++)
+		{
+			drive(i);
+			arm((2278-SensorValue[armPot])/10);
+			if(SensorValue[goalPot] < 3250)
+			{
+				goal(-127);
+			}
+			else
+			{
+				goal(0);
+			}
+			wait1Msec(10);
+			if((SensorValue[leftEncoder] > (driveEncoderValue - actionTolerance)) || (SensorValue[rightEncoder] > (driveEncoderValue - actionTolerance)))
+			{
+				i = drivePower;
+			}
+		}
+		int leftPower = drivePower;
+		int rightPower = drivePower;
+		while((SensorValue[leftEncoder] < (driveEncoderValue - actionTolerance)) || (SensorValue[rightEncoder] < (driveEncoderValue - actionTolerance)))
+		{
+			if(SensorValue[goalPot] < 3250)
+			{
+				goal(-127);
+			}
+			else
+			{
+				goal(0);
+			}
+			arm((2278-SensorValue[armPot])/10);
+			if(SensorValue[leftEncoder] > SensorValue[rightEncoder])
+			{
+				leftPower--;
+				rightPower++;
+			}
+			else if(SensorValue[leftEncoder] < SensorValue[rightEncoder])
+			{
+				leftPower++;
+				rightPower--;
+			}
+			
+			if(leftPower > drivePower)
+			{
+				leftPower = drivePower;
+			}
+			else if(rightPower > drivePower)
+			{
+				rightPower = drivePower;
+			}
+			if(leftPower < (drivePower/5))
+			{
+				leftPower = (drivePower/5);
+			}
+			else if(rightPower < (drivePower/5))
+			{
+				rightPower = (drivePower/5);
+			}
+			
+			leftDrive(leftPower);
+			rightDrive(rightPower);
+		}
+		
+		for(int i = drivePower; i > (drivePower/5); i--)
+		{
+			drive(i);
+			if(SensorValue[goalPot] < 3250)
+			{
+				goal(-127);
+			}
+			else
+			{
+				goal(0);
+			}
+			wait1Msec(10);
+			if((SensorValue[leftEncoder] > (driveEncoderValue)) || (SensorValue[rightEncoder] > (driveEncoderValue)))
+			{
+				i = drivePower/5;
+				
+			}
+		}
+		drive(0);
+		arm(0);
+	
+	clearTimer(T4);
+	while(SensorValue[goalPot] > 1350)
+	{
+		goal(127);
+	}
+	goal(0);
+	arm(-127);
+	while(SensorValue[armPot] > 1250) {}
 	arm(0);
 	
-	// while(SensorValue[lowerBumper] == 0)
-	// {
-		// motor[goalMotor] = -127;
-	// }
-	// motor[goalMotor] = 0;
+	sEncoDrive(-127, -700);
+	encoderDrive(127, 400, -127, -400);
+	claw(0);
+	
+	encoderDrive(127, 400, 80, 250);
+	
+	arm(127);
+	while(SensorValue[armPot] < 2500) {}
+	arm(0);
+	
+	while(SensorValue[goalPot] < 2750)
+	{
+		goal(-127);
+	}
+	goal(0);
 	
 	drive(127);
-	wait1Msec(2750);
-	drive(0);
-	
-	goalGrab(127);
-	wait1Msec(600);
-	goalGrab(35);
-	
-	motor[goalMotor] = 127;
-	wait1Msec(1500);
-	motor[goalMotor] = 0;
-	
-	wait1Msec(250);
-	
+	wait1Msec(400);
 	drive(-127);
-	wait1Msec(2600);
+	wait1Msec(800);
 	drive(0);
+}
+
+void auton_rightMobile20() //auton_routine=3
+{
 	
-	leftDrive(-127);
-	rightDrive(127);
-	wait1Msec(1000);
-	leftDrive(0);
-	rightDrive(0);
+}
+
+void auton_leftMobile20() //auton_routine=4
+{
 	
-	drive(127);
-	wait1Msec(600);
-	drive(0);
-	
-	clearTimer(T1);
-	// while(SensorValue[lowerBumper] == 0)
-	// {
-		// motor[goalMotor] = -127;
-	// }
-	// while(time1(T1) < 1000) {}
-	// motor[goalMotor] = 0;
-	goalGrab(-127);
-	wait1Msec(300);
-	goalGrab(0);
-	drive(-127);
-	wait1Msec(1000);
-	drive(0);
 }
 
 void auton_switchOptions() //contains names for autonomous routines
 {
 	switch(auton_routine) {
 		case 0:
-			displayLCDCenteredString(0, "Darude Sandstorm");
+			displayLCDCenteredString(0, " Straight Test  ");
 			break;
 		case 1:
-			displayLCDCenteredString(0, "Blue Mobile1Cone");
+			displayLCDCenteredString(0, "1RightMobileGoal");
 			break;
 		case 2:
-			displayLCDCenteredString(0, "BlueMobile2Cones");
+			displayLCDCenteredString(0, "1Left MobileGoal");
+			break;
+		case 3:
+			displayLCDCenteredString(0, "2RightMobileGoal");
+			break;
+		case 4:
+			displayLCDCenteredString(0, "2LeftMobile Goal");
 			break;
 		default:
 			displayLCDCenteredString(0, "Error");
@@ -170,13 +294,19 @@ void auton_switchLauncher() //contains method names that correlate with the rout
 {
 	switch(auton_routine) {
 		case 0:
-			auton_skills();
+			auton_test();
 			break;
 		case 1:
-			blueMobileAuton();
+			auton_rightMobile();
 			break;
 		case 2:
-			blueMobileDouble();
+			auton_leftMobile();
+			break;
+		case 3:
+			auton_rightMobile20();
+			break;
+		case 4:
+			auton_leftMobile20();
 			break;
 		default:
 	}	

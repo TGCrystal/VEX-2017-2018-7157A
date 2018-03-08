@@ -101,18 +101,6 @@ void goalControl()
 	{
 		goalDown();
 	}
-	else if(vexRT[Btn7L] == 1)
-	{
-		int goalDownPot = 3125;
-		if((SensorValue[goalPot] < (goalDownPot + 100)) && (SensorValue[goalPot] > (goalDownPot - 100)))
-		{
-			motor[goalMotor] = ((SensorValue[goalPot] - goalDownPot)/2);
-		}
-		else
-		{
-			motor[goalMotor] = (SensorValue[goalPot] - goalDownPot);
-		}
-	}
 	else
 	{
 		motor[goalMotor] = 0;

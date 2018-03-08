@@ -11,7 +11,7 @@ void LCD_autonomousSwitcher()
 {
 	bLCDBacklight = true;
 	bool autonomousDecision = false;
-	const int NUM_OF_ROUTINES = 2 + 1; //Number of normal autonomous routines + the number of skills routines
+	const int NUM_OF_ROUTINES = 5;
 	LCD_clear();
 	while(!(autonomousDecision))
 	{
