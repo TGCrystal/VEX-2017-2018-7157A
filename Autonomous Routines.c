@@ -4,8 +4,11 @@ void auton_test() //The autonomous routine for the one minute skills challenge, 
 	drive(127);
 }
 
+int auton_time = 0;
+
 void auton_rightMobile() //get high goal, auton_routine=1
 {
+	clearTimer(T1);
 	claw(-127);
 	wait1Msec(300);
 	clearTimer(T4);
@@ -107,31 +110,71 @@ void auton_rightMobile() //get high goal, auton_routine=1
 	while(SensorValue[armPot] > 1250) {}
 	arm(0);
 	
-	sEncoDrive(-127, -700);
+	sEncoDrive(-127, -750);
 	encoderDrive(-127, -400, 127, 400);
 	claw(0);
 	
-	encoderDrive(80, 250, 127, 400);
+	int leftPower = 46;
+	int leftEncoderValue = 100;
+	int rightPower = 127;
+	int rightEncoderValue = 325;
+	clearEncoders();
+	leftEncoderValue = abs(leftEncoderValue);
+	rightEncoderValue = abs(rightEncoderValue);
+	clearTimer(T2);
+	while(((abs(SensorValue[leftEncoder]) < leftEncoderValue) || (abs(SensorValue[rightEncoder]) < rightEncoderValue)) && (time1(T2) < 1000))
+	{
+		if(abs(SensorValue[leftEncoder]) < leftEncoderValue)
+		{
+			leftDrive(leftPower);
+		}
+		else
+		{
+			leftDrive(0);
+		}
+		if(abs(SensorValue[rightEncoder]) < rightEncoderValue)
+		{
+			rightDrive(rightPower);
+		}
+		else
+		{
+			rightDrive(0);
+		}
+	}
+	rightDrive(0);
+	leftDrive(0);
+	
+	drive(50);
+	wait1Msec(400);
+	drive(0);
 	
 	arm(127);
 	while(SensorValue[armPot] < 2500) {}
 	arm(0);
 	
-	while(SensorValue[goalPot] < 2750)
-	{
-		goal(-127);
-	}
+	goal(-127);
+	while(SensorValue[goalPot] < 2465) {}
 	goal(0);
 	
-	drive(127);
-	wait1Msec(400);
-	drive(-127);
-	wait1Msec(800);
-	drive(0);
+	sEncoDrive(-127, -150);
+	
+	
+	encoderDrive(-127, -220, 127, 220);
+	
+	sEncoDrive(127, 500);
+	
+	encoderDrive(-127, -100, 127, 100);
+	
+	sEncoDrive(127, 250);
+	
+	encoderDrive(-127, -100, 127, 100);
+	
+	auton_time = time1(T1);
 }
 
 void auton_leftMobile() //get mobile goal, auton_routine=2
 {
+	clearTimer(T1);
 	claw(-127);
 	wait1Msec(300);
 	clearTimer(T4);
@@ -224,7 +267,6 @@ void auton_leftMobile() //get mobile goal, auton_routine=2
 		drive(0);
 		arm(0);
 	
-	clearTimer(T4);
 	while(SensorValue[goalPot] > 1350)
 	{
 		goal(127);
@@ -234,27 +276,66 @@ void auton_leftMobile() //get mobile goal, auton_routine=2
 	while(SensorValue[armPot] > 1250) {}
 	arm(0);
 	
-	sEncoDrive(-127, -700);
+	sEncoDrive(-127, -750);
 	encoderDrive(127, 400, -127, -400);
 	claw(0);
 	
-	encoderDrive(127, 400, 80, 250);
+	int leftPower = 127;
+	int leftEncoderValue = 325;
+	int rightPower = 46;
+	int rightEncoderValue = 100;
+	clearEncoders();
+	leftEncoderValue = abs(leftEncoderValue);
+	rightEncoderValue = abs(rightEncoderValue);
+	clearTimer(T2);
+	while(((abs(SensorValue[leftEncoder]) < leftEncoderValue) || (abs(SensorValue[rightEncoder]) < rightEncoderValue)) && (time1(T2) < 1000))
+	{
+		if(abs(SensorValue[leftEncoder]) < leftEncoderValue)
+		{
+			leftDrive(leftPower);
+		}
+		else
+		{
+			leftDrive(0);
+		}
+		if(abs(SensorValue[rightEncoder]) < rightEncoderValue)
+		{
+			rightDrive(rightPower);
+		}
+		else
+		{
+			rightDrive(0);
+		}
+	}
+	rightDrive(0);
+	leftDrive(0);
+	
+	drive(50);
+	wait1Msec(400);
+	drive(0);
 	
 	arm(127);
 	while(SensorValue[armPot] < 2500) {}
 	arm(0);
 	
-	while(SensorValue[goalPot] < 2750)
-	{
-		goal(-127);
-	}
+	goal(-127);
+	while(SensorValue[goalPot] < 2465) {}
 	goal(0);
 	
-	drive(127);
-	wait1Msec(400);
-	drive(-127);
-	wait1Msec(800);
-	drive(0);
+	sEncoDrive(-127, -150);
+	
+	
+	encoderDrive(127, 220, -127, -220);
+	
+	sEncoDrive(127, 500);
+	
+	encoderDrive(127, 100, -127, -100);
+	
+	sEncoDrive(127, 250);
+	
+	encoderDrive(127, 100, -127, -100);
+	
+	auton_time = time1(T1);
 }
 
 void auton_rightMobile20() //auton_routine=3
