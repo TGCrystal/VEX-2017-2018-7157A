@@ -114,9 +114,9 @@ void auton_rightMobile() //get high goal, auton_routine=1
 	encoderDrive(-127, -400, 127, 400);
 	claw(0);
 	
-	int leftPower = 46;
+	leftPower = 46;
 	int leftEncoderValue = 100;
-	int rightPower = 127;
+	rightPower = 127;
 	int rightEncoderValue = 325;
 	clearEncoders();
 	leftEncoderValue = abs(leftEncoderValue);
@@ -280,9 +280,9 @@ void auton_leftMobile() //get mobile goal, auton_routine=2
 	encoderDrive(127, 400, -127, -400);
 	claw(0);
 	
-	int leftPower = 127;
+	leftPower = 127;
 	int leftEncoderValue = 325;
-	int rightPower = 46;
+	rightPower = 46;
 	int rightEncoderValue = 100;
 	clearEncoders();
 	leftEncoderValue = abs(leftEncoderValue);
