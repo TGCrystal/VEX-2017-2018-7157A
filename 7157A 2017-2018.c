@@ -149,6 +149,7 @@ void pre_auton() //runs when the robot is first turned on
 {
 	if(nLCDButtons == 7) //the autonomous selector will only activate if all LCD buttons are pressed on launch
 	{
+		while(nLCDButtons != 0) {}
 		LCD_autonomousSwitcher();
 	}
 	claw(0);

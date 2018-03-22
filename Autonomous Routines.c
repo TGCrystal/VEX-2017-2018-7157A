@@ -11,6 +11,9 @@ void auton_rightMobile() //get high goal, auton_routine=1
 	clearTimer(T1);
 	claw(-127);
 	wait1Msec(300);
+			// arm(127);
+			// wait1Msec(1000);
+			// arm(0);
 	clearTimer(T4);
 	
 	int actionTolerance = 40;
@@ -20,7 +23,7 @@ void auton_rightMobile() //get high goal, auton_routine=1
 		for(int i = (drivePower/5); i < drivePower; i++)
 		{
 			drive(i);
-			arm((2278-SensorValue[armPot])/10);
+			arm((2085-SensorValue[armPot])/10);
 			if(SensorValue[goalPot] < 3250)
 			{
 				goal(-127);
@@ -47,7 +50,7 @@ void auton_rightMobile() //get high goal, auton_routine=1
 			{
 				goal(0);
 			}
-			arm((2278-SensorValue[armPot])/10);
+			arm((2085-SensorValue[armPot])/10);
 			if(SensorValue[leftEncoder] > SensorValue[rightEncoder])
 			{
 				leftPower--;
@@ -108,6 +111,7 @@ void auton_rightMobile() //get high goal, auton_routine=1
 	goal(0);
 	arm(-127);
 	while(SensorValue[armPot] > 1250) {}
+	// wait1Msec(750);
 	arm(0);
 	
 	sEncoDrive(-127, -750);
@@ -150,6 +154,7 @@ void auton_rightMobile() //get high goal, auton_routine=1
 	
 	arm(127);
 	while(SensorValue[armPot] < 2500) {}
+	// wait1Msec(750);
 	arm(0);
 	
 	goal(-127);
@@ -177,6 +182,9 @@ void auton_leftMobile() //get mobile goal, auton_routine=2
 	clearTimer(T1);
 	claw(-127);
 	wait1Msec(300);
+			// arm(127);
+			// wait1Msec(750);
+			// arm(0);
 	clearTimer(T4);
 	
 	int actionTolerance = 40;
@@ -186,7 +194,7 @@ void auton_leftMobile() //get mobile goal, auton_routine=2
 		for(int i = (drivePower/5); i < drivePower; i++)
 		{
 			drive(i);
-			arm((2278-SensorValue[armPot])/10);
+			arm((2085-SensorValue[armPot])/10);
 			if(SensorValue[goalPot] < 3250)
 			{
 				goal(-127);
@@ -213,7 +221,7 @@ void auton_leftMobile() //get mobile goal, auton_routine=2
 			{
 				goal(0);
 			}
-			arm((2278-SensorValue[armPot])/10);
+			arm((2085-SensorValue[armPot])/10);
 			if(SensorValue[leftEncoder] > SensorValue[rightEncoder])
 			{
 				leftPower--;
@@ -274,6 +282,7 @@ void auton_leftMobile() //get mobile goal, auton_routine=2
 	goal(0);
 	arm(-127);
 	while(SensorValue[armPot] > 1250) {}
+	// wait1Msec(750);
 	arm(0);
 	
 	sEncoDrive(-127, -750);
@@ -316,6 +325,7 @@ void auton_leftMobile() //get mobile goal, auton_routine=2
 	
 	arm(127);
 	while(SensorValue[armPot] < 2500) {}
+	// wait1Msec(750);
 	arm(0);
 	
 	goal(-127);
